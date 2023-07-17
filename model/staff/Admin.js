@@ -1,71 +1,54 @@
 const bcrypt = require("bcryptjs");
 
 const mongoose = require("mongoose");
-const adminSchema = new mongoose.Schema(
-  {
+const adminSchema = new mongoose.Schema({
     name: {
-      type: String,
-      required: true,
+        type: String,
+        required: true,
     },
     email: {
-      type: String,
-      required: true,
+        type: String,
+        required: true,
     },
     password: {
-      type: String,
-      required: true,
+        type: String,
+        required: true,
     },
     role: {
-      type: String,
-      default: "admin",
+        type: String,
+        default: "admin",
     },
-    academicTerms: [
-      {
+    academicTerms: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "AcademicTerm",
-      },
-    ],
-    programs: [
-      {
+    }, ],
+    programs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Program",
-      },
-    ],
-    yearGroups: [
-      {
+    }, ],
+    yearGroups: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "YearGroup",
-      },
-    ],
-    academicYears: [
-      {
+    }, ],
+    academicYears: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "AcademicYear",
-      },
-    ],
-    classLevels: [
-      {
+    }, ],
+    classLevels: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "ClassLevel",
-      },
-    ],
-    teachers: [
-      {
+    }, ],
+    teachers: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Teacher",
-      },
-    ],
-    students: [
-      {
+    }, ],
+    students: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Student",
-      },
-    ],
-  },
-  {
+    }, ],
+}, {
     timestamps: true,
-  }
-);
+});
 
 //model
 const Admin = mongoose.model("Admin", adminSchema);
