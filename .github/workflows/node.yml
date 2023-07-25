@@ -25,4 +25,5 @@ jobs:
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
       - run: npm install
-      - run: npm test
+      - name: Run tests
+        run: npm test
