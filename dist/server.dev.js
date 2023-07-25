@@ -1,6 +1,10 @@
 "use strict";
 
+require("dotenv").config();
+
 var http = require('http');
+
+require("./config/dbConnect");
 
 var app = require("./app/app");
 
