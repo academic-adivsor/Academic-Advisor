@@ -1,7 +1,5 @@
 "use strict";
 
-var bcrypt = require("bcryptjs");
-
 var mongoose = require("mongoose");
 
 var adminSchema = new mongoose.Schema({
