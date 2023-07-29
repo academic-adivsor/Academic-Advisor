@@ -21,7 +21,7 @@ adminRouter.put("/unsuspend/teacher/:id", adminUnSuspendTeacherCtrl);
 ////admin withdrawing teacher
 adminRouter.put("/withdraw/teacher/:id", adminWithdrawTeacherCtrl);
 //admin Unwithdrawing teacher
-adminrRouter.put("/unwithdraw/teacher/:id", adminUnWithdrawTeacherCtrl);
+adminRouter.put("/unwithdraw/teacher/:id", adminUnWithdrawTeacherCtrl);
 //admin publish exam results
 adminRouter.put("/publish/exam/:id", adminPublishResultsCtrl);
 //admin Unpublish exam results

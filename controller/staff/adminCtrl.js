@@ -3,20 +3,20 @@ const Admin = require("../../model/staff/Admin");
 //router POST /api/admin/register
 //@aces Private
 exports.registerAdmnCtrl = async(req, res) => {
-    const adminfound = await Admin.findOne({ email });
-    if (AdminFound) {
-        res.json("Admin Exists");
-    }
     const { name, email, password } = req.body;
     try {
+        const adminFound = await Admin.findOne({ email });
+        if (adminFound) {
+            return res.json("Admin Exists");
+        }
         const user = await Admin.create({
             name,
             email,
-            password
+            password,
         });
         res.status(201).json({
             status: "success",
-            data: "admin has been registered",
+            data: user,
         });
     } catch (error) {
         res.json({

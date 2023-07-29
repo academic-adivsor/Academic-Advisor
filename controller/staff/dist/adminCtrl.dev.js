@@ -6,56 +6,60 @@ var Admin = require("../../model/staff/Admin"); //desc register admin
 
 
 exports.registerAdmnCtrl = function _callee(req, res) {
-  var adminfound, _req$body, name, email, password, user;
+  var _req$body, name, email, password, adminFound, user;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
+          _req$body = req.body, name = _req$body.name, email = _req$body.email, password = _req$body.password;
+          _context.prev = 1;
+          _context.next = 4;
           return regeneratorRuntime.awrap(Admin.findOne({
             email: email
           }));
 
-        case 2:
-          adminfound = _context.sent;
+        case 4:
+          adminFound = _context.sent;
 
-          if (AdminFound) {
-            res.json("Admin Exists");
+          if (!adminFound) {
+            _context.next = 7;
+            break;
           }
 
-          _req$body = req.body, name = _req$body.name, email = _req$body.email, password = _req$body.password;
-          _context.prev = 5;
-          _context.next = 8;
+          return _context.abrupt("return", res.json("Admin Exists"));
+
+        case 7:
+          _context.next = 9;
           return regeneratorRuntime.awrap(Admin.create({
             name: name,
             email: email,
             password: password
           }));
 
-        case 8:
+        case 9:
           user = _context.sent;
           res.status(201).json({
             status: "success",
-            data: "admin has been registered"
+            data: user
           });
-          _context.next = 15;
+          _context.next = 16;
           break;
 
-        case 12:
-          _context.prev = 12;
-          _context.t0 = _context["catch"](5);
+        case 13:
+          _context.prev = 13;
+          _context.t0 = _context["catch"](1);
           res.json({
             status: "failed",
             error: _context.t0.message
           });
 
-        case 15:
+        case 16:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[5, 12]]);
+  }, null, null, [[1, 13]]);
 }; //@desc login admin
 //@route POST /api/v1/admins/login
 //@access Private
