@@ -21,62 +21,114 @@ exports.registerAdmnCtrl = function _callee(req, res) {
 
         case 4:
           adminFound = _context.sent;
-
-          if (!adminFound) {
-            _context.next = 7;
-            break;
-          }
-
-          return _context.abrupt("return", res.json("Admin Exists"));
-
-        case 7:
-          _context.next = 9;
+          _context.next = 7;
           return regeneratorRuntime.awrap(Admin.create({
             name: name,
             email: email,
             password: password
           }));
 
-        case 9:
+        case 7:
           user = _context.sent;
           res.status(201).json({
             status: "success",
             data: user
           });
-          _context.next = 16;
+          _context.next = 14;
           break;
 
-        case 13:
-          _context.prev = 13;
+        case 11:
+          _context.prev = 11;
           _context.t0 = _context["catch"](1);
           res.json({
             status: "failed",
             error: _context.t0.message
           });
 
-        case 16:
+        case 14:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[1, 13]]);
+  }, null, null, [[1, 11]]);
 }; //@desc login admin
 //@route POST /api/v1/admins/login
 //@access Private
 
 
-exports.loginAdminCtrl = function (req, res) {
-  try {
-    res.status(201).json({
-      status: "success",
-      data: "admin has been login"
-    });
-  } catch (error) {
-    res.json({
-      status: "failed",
-      error: error.message
-    });
-  }
+exports.loginAdminCtrl = function _callee2(req, res) {
+  var _req$body2, email, password, user;
+
+  return regeneratorRuntime.async(function _callee2$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          _req$body2 = req.body, email = _req$body2.email, password = _req$body2.password;
+          _context2.prev = 1;
+          _context2.next = 4;
+          return regeneratorRuntime.awrap(Admin.findOne({
+            email: email
+          }));
+
+        case 4:
+          user = _context2.sent;
+
+          if (user) {
+            _context2.next = 7;
+            break;
+          }
+
+          return _context2.abrupt("return", res.json({
+            message: "Invalid login crendentials"
+          }));
+
+        case 7:
+          _context2.t0 = user;
+
+          if (!_context2.t0) {
+            _context2.next = 12;
+            break;
+          }
+
+          _context2.next = 11;
+          return regeneratorRuntime.awrap(user.verifyPassword(password));
+
+        case 11:
+          _context2.t0 = _context2.sent;
+
+        case 12:
+          if (!_context2.t0) {
+            _context2.next = 16;
+            break;
+          }
+
+          return _context2.abrupt("return", res.json({
+            data: user
+          }));
+
+        case 16:
+          return _context2.abrupt("return", res.json({
+            message: "Invalid login crendentials"
+          }));
+
+        case 17:
+          _context2.next = 22;
+          break;
+
+        case 19:
+          _context2.prev = 19;
+          _context2.t1 = _context2["catch"](1);
+          res.json({
+            status: "failed",
+            error: _context2.t1.message
+          });
+
+        case 22:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  }, null, null, [[1, 19]]);
 }; //@desc Get all admin
 //@route GET /api/v1/admins
 //@access Private
