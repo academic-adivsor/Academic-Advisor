@@ -1,30 +1,25 @@
+const AsyncHandler = require("express-async-handler");
 const Admin = require("../../model/staff/Admin");
 //desc register admin
 //router POST /api/admin/register
 //@aces Private
-exports.registerAdmnCtrl = async(req, res) => {
+exports.registerAdmnCtrl = AsyncHandler(async(req, res) => {
     const { name, email, password } = req.body;
-    try {
-        const adminFound = await Admin.findOne({ email });
-        //if (adminFound) {
-        // return res.json("Admin Exists");
-        //}
-        const user = await Admin.create({
-            name,
-            email,
-            password,
-        });
-        res.status(201).json({
-            status: "success",
-            data: user,
-        });
-    } catch (error) {
-        res.json({
-            status: "failed",
-            error: error.message,
-        });
+    //check if email exists
+    const adminFound = await Admin.findOne({ email });
+    if (adminFound) {
+        throw new Error("Admin Exists");
     }
-};
+    const user = await Admin.create({
+        name,
+        email,
+        password,
+    });
+    res.status(201).json({
+        status: "success",
+        data: user,
+    });
+});
 //@desc login admin
 //@route POST /api/v1/admins/login
 //@access Private

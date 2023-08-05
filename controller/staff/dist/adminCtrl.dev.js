@@ -1,60 +1,60 @@
 "use strict";
 
+var AsyncHandler = require("express-async-handler");
+
 var Admin = require("../../model/staff/Admin"); //desc register admin
 //router POST /api/admin/register
 //@aces Private
 
 
-exports.registerAdmnCtrl = function _callee(req, res) {
+exports.registerAdmnCtrl = AsyncHandler(function _callee(req, res) {
   var _req$body, name, email, password, adminFound, user;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _req$body = req.body, name = _req$body.name, email = _req$body.email, password = _req$body.password;
-          _context.prev = 1;
-          _context.next = 4;
+          _req$body = req.body, name = _req$body.name, email = _req$body.email, password = _req$body.password; //check if email exists
+
+          _context.next = 3;
           return regeneratorRuntime.awrap(Admin.findOne({
             email: email
           }));
 
-        case 4:
+        case 3:
           adminFound = _context.sent;
-          _context.next = 7;
+
+          if (!adminFound) {
+            _context.next = 6;
+            break;
+          }
+
+          throw new Error("Admin Exists");
+
+        case 6:
+          _context.next = 8;
           return regeneratorRuntime.awrap(Admin.create({
             name: name,
             email: email,
             password: password
           }));
 
-        case 7:
+        case 8:
           user = _context.sent;
           res.status(201).json({
             status: "success",
             data: user
           });
-          _context.next = 14;
-          break;
 
-        case 11:
-          _context.prev = 11;
-          _context.t0 = _context["catch"](1);
-          res.json({
-            status: "failed",
-            error: _context.t0.message
-          });
-
-        case 14:
+        case 10:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[1, 11]]);
-}; //@desc login admin
+  });
+}); //@desc login admin
 //@route POST /api/v1/admins/login
 //@access Private
-
 
 exports.loginAdminCtrl = function _callee2(req, res) {
   var _req$body2, email, password, user;
