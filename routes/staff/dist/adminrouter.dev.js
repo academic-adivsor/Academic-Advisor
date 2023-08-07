@@ -2,8 +2,6 @@
 
 var express = require("express");
 
-var app = require("../../app/app");
-
 var _require = require("../../controller/staff/adminCtrl"),
     registerAdmnCtrl = _require.registerAdmnCtrl,
     adminPublishResultsCtrl = _require.adminPublishResultsCtrl,
@@ -18,6 +16,8 @@ var _require = require("../../controller/staff/adminCtrl"),
     deleteAdminCtrl = _require.deleteAdminCtrl,
     getAdminCtrl = _require.getAdminCtrl;
 
+var isLogin = require("../../middlewares/isLogin");
+
 var adminRouter = express.Router(); //admin register
 
 adminRouter.post("/register", registerAdmnCtrl); //admin login
@@ -26,7 +26,7 @@ adminRouter.post("/login", loginAdminCtrl); //get all admins
 
 adminRouter.get("/", getAdminsCtrl); //single admin
 
-adminRouter.get("/:id", getAdminCtrl); //update admin
+adminRouter.get("/:id", isLogin, getAdminCtrl); //update admin
 
 adminRouter.put("/:id", updateAdminCtrl); //delete admin
 
@@ -44,4 +44,4 @@ adminRouter.put("/publish/exam/:id", adminPublishResultsCtrl); //admin Unpublish
 
 adminRouter.put("/unpublish/exam/:id", adminUnPublishResultsCtrl);
 module.exports = adminRouter;
-//# sourceMappingURL=adminrouter.dev.js.map
+//# sourceMappingURL=adminRouter.dev.js.map

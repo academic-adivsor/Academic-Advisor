@@ -2,7 +2,11 @@
 
 var AsyncHandler = require("express-async-handler");
 
-var Admin = require("../../model/staff/Admin"); //desc register admin
+var Admin = require("../../model/staff/Admin");
+
+var generateToken = require("../../utlis/generateToken");
+
+var verifyToken = require("../../utlis/verifyToken"); //desc register admin
 //router POST /api/admin/register
 //@aces Private
 
@@ -56,25 +60,25 @@ exports.registerAdmnCtrl = AsyncHandler(function _callee(req, res) {
 //@route POST /api/v1/admins/login
 //@access Private
 
-exports.loginAdminCtrl = function _callee2(req, res) {
-  var _req$body2, email, password, user;
+exports.loginAdminCtrl = AsyncHandler(function _callee2(req, res) {
+  var _req$body2, email, password, user, token, verify;
 
   return regeneratorRuntime.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          _req$body2 = req.body, email = _req$body2.email, password = _req$body2.password;
-          _context2.prev = 1;
-          _context2.next = 4;
+          _req$body2 = req.body, email = _req$body2.email, password = _req$body2.password; //find user
+
+          _context2.next = 3;
           return regeneratorRuntime.awrap(Admin.findOne({
             email: email
           }));
 
-        case 4:
+        case 3:
           user = _context2.sent;
 
           if (user) {
-            _context2.next = 7;
+            _context2.next = 6;
             break;
           }
 
@@ -82,57 +86,48 @@ exports.loginAdminCtrl = function _callee2(req, res) {
             message: "Invalid login crendentials"
           }));
 
-        case 7:
+        case 6:
           _context2.t0 = user;
 
           if (!_context2.t0) {
-            _context2.next = 12;
+            _context2.next = 11;
             break;
           }
 
-          _context2.next = 11;
+          _context2.next = 10;
           return regeneratorRuntime.awrap(user.verifyPassword(password));
 
-        case 11:
+        case 10:
           _context2.t0 = _context2.sent;
 
-        case 12:
+        case 11:
           if (!_context2.t0) {
-            _context2.next = 16;
+            _context2.next = 17;
             break;
           }
 
+          token = generateToken(user._id);
+          verify = verifyToken(token);
           return _context2.abrupt("return", res.json({
-            data: user
+            data: generateToken(user._id),
+            user: user,
+            verify: verify
           }));
 
-        case 16:
+        case 17:
           return _context2.abrupt("return", res.json({
             message: "Invalid login crendentials"
           }));
 
-        case 17:
-          _context2.next = 22;
-          break;
-
-        case 19:
-          _context2.prev = 19;
-          _context2.t1 = _context2["catch"](1);
-          res.json({
-            status: "failed",
-            error: _context2.t1.message
-          });
-
-        case 22:
+        case 18:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[1, 19]]);
-}; //@desc Get all admin
+  });
+}); //@desc Get all admin
 //@route GET /api/v1/admins
 //@access Private
-
 
 exports.getAdminsCtrl = function (req, res) {
   try {

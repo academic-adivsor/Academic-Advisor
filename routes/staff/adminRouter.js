@@ -1,6 +1,6 @@
 const express = require("express");
-const app = require("../../app/app");
 const { registerAdmnCtrl, adminPublishResultsCtrl, adminSuspendTeacherCtrl, adminUnPublishResultsCtrl, adminUnSuspendTeacherCtrl, adminUnWithdrawTeacherCtrl, adminWithdrawTeacherCtrl, getAdminsCtrl, loginAdminCtrl, updateAdminCtrl, deleteAdminCtrl, getAdminCtrl } = require("../../controller/staff/adminCtrl");
+const isLogin = require("../../middlewares/isLogin");
 const adminRouter = express.Router();
 //admin register
 adminRouter.post("/register", registerAdmnCtrl);
@@ -9,7 +9,7 @@ adminRouter.post("/login", loginAdminCtrl);
 //get all admins
 adminRouter.get("/", getAdminsCtrl);
 //single admin
-adminRouter.get("/:id", getAdminCtrl);
+adminRouter.get("/:id", isLogin, getAdminCtrl);
 //update admin
 adminRouter.put("/:id", updateAdminCtrl);
 //delete admin
