@@ -5,9 +5,7 @@ var jwt = require("jsonwebtoken");
 var verifyToken = function verifyToken(token) {
   return jwt.verify(token, "anykey", function (err, decoded) {
     if (err) {
-      return {
-        msg: "Invalid Token"
-      };
+      return false;
     } else {
       return decoded;
     }

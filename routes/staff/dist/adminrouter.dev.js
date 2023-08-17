@@ -14,7 +14,9 @@ var _require = require("../../controller/staff/adminCtrl"),
     loginAdminCtrl = _require.loginAdminCtrl,
     updateAdminCtrl = _require.updateAdminCtrl,
     deleteAdminCtrl = _require.deleteAdminCtrl,
-    getAdminCtrl = _require.getAdminCtrl;
+    getAdminProfileCtrl = _require.getAdminProfileCtrl;
+
+var isAdmin = require("../../middlewares/isAdmin");
 
 var isLogin = require("../../middlewares/isLogin");
 
@@ -24,11 +26,11 @@ adminRouter.post("/register", registerAdmnCtrl); //admin login
 
 adminRouter.post("/login", loginAdminCtrl); //get all admins
 
-adminRouter.get("/", getAdminsCtrl); //single admin
+adminRouter.get("/", isLogin, getAdminsCtrl); //single admin
 
-adminRouter.get("/:id", isLogin, getAdminCtrl); //update admin
+adminRouter.get("/Profile", isLogin, isAdmin, getAdminProfileCtrl); //update admin
 
-adminRouter.put("/:id", updateAdminCtrl); //delete admin
+adminRouter.put("/", isLogin, isAdmin, updateAdminCtrl); //delete admin
 
 adminRouter["delete"]("/:id", deleteAdminCtrl); //admin suspend teacher
 
