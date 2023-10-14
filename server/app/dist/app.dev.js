@@ -8,6 +8,8 @@ var _require = require("../middlewares/globalErrHandler"),
     globalErrHandler = _require.globalErrHandler,
     notFoundErr = _require.notFoundErr;
 
+var academicYearRouter = require("../routes/academics/academicYear");
+
 var adminRouter = require("../routes/staff/adminRouter");
 
 var app = express();
@@ -15,7 +17,8 @@ app.use(morgan("dev"));
 app.use(express.json()); //routes
 //admin register
 
-app.use("/api/v1/admins", adminRouter); //Error middlewares
+app.use("/api/v1/admins", adminRouter);
+app.use("/api/v1/academic-years", academicYearRouter); //Error middlewares
 
 app.use(notFoundErr);
 app.use(globalErrHandler);
