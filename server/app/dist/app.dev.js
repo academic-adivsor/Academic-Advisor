@@ -12,6 +12,12 @@ var academicTermRouter = require("../routes/academics/academicTerm");
 
 var academicYearRouter = require("../routes/academics/academicYear");
 
+var classLevelRouter = require("../routes/academics/classLevel");
+
+var programRouter = require("../routes/academics/program");
+
+var subjectRouter = require("../routes/academics/subjects");
+
 var adminRouter = require("../routes/staff/adminRouter");
 
 var app = express();
@@ -21,7 +27,10 @@ app.use(express.json()); //routes
 
 app.use("/api/v1/admins", adminRouter);
 app.use("/api/v1/academic-years", academicYearRouter);
-app.use("/api/v1/academic-terms", academicTermRouter); //Error middlewares
+app.use("/api/v1/academic-terms", academicTermRouter);
+app.use("/api/v1/class-levels", classLevelRouter);
+app.use("/api/v1/programs", programRouter);
+app.use("/api/v1/subjects", subjectRouter); //Error middlewares
 
 app.use(notFoundErr);
 app.use(globalErrHandler);
