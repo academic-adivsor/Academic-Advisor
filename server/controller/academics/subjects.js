@@ -27,7 +27,7 @@ exports.createSubject = AysncHandler(async (req, res) => {
     createdBy: req.userAuth._id,
   });
   //push to the program
-  // programFound.subjects.push(subjectCreated._id);
+programFound.subjects.push(subjectCreated._id);
   //save
   await programFound.save();
   res.status(201).json({

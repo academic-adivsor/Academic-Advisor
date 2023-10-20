@@ -60,17 +60,20 @@ exports.createSubject = AysncHandler(function _callee(req, res) {
 
         case 13:
           subjectCreated = _context.sent;
-          _context.next = 16;
+          //push to the program
+          programFound.subjects.push(subjectCreated._id); //save
+
+          _context.next = 17;
           return regeneratorRuntime.awrap(programFound.save());
 
-        case 16:
+        case 17:
           res.status(201).json({
             status: "success",
             message: "Program created successfully",
             data: subjectCreated
           });
 
-        case 17:
+        case 18:
         case "end":
           return _context.stop();
       }

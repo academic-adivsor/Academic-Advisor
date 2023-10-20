@@ -18,10 +18,11 @@ var programRouter = require("../routes/academics/program");
 
 var subjectRouter = require("../routes/academics/subjects");
 
+var yearGroupRouter = require("../routes/academics/yearGroups");
+
 var adminRouter = require("../routes/staff/adminRouter");
 
 var app = express();
-app.use(morgan("dev"));
 app.use(express.json()); //routes
 //admin register
 
@@ -30,7 +31,8 @@ app.use("/api/v1/academic-years", academicYearRouter);
 app.use("/api/v1/academic-terms", academicTermRouter);
 app.use("/api/v1/class-levels", classLevelRouter);
 app.use("/api/v1/programs", programRouter);
-app.use("/api/v1/subjects", subjectRouter); //Error middlewares
+app.use("/api/v1/subjects", subjectRouter);
+app.use("/api/v1/year-groups", yearGroupRouter); //Error middlewares
 
 app.use(notFoundErr);
 app.use(globalErrHandler);
