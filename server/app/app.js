@@ -26,9 +26,9 @@ app.use(globalErrHandler);
 module.exports = app;
 
 const whitelist = [
-	'http://Admin-Dashboard-localhost',   
-	'http://Student-Dashboard-main-localhost',
-	'http://Doctor_DashBord-localhost', // Replace with your actual instructor localhost
+  'http://Admin-Dashboard-localhost:3000',   // Replace with your actual admin localhost
+  'http://Student-Dashboard-main-localhost:3000', // Replace with your actual student localhost
+  'http://Doctor_DashBord-localhost:3000', // Replace with your actual instructor localhost
 ];
 
 const corsOptions = {

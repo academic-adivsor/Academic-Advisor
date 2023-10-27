@@ -40,7 +40,9 @@ app.use("/api/v1/year-groups", yearGroupRouter); //Error middlewares
 app.use(notFoundErr);
 app.use(globalErrHandler);
 module.exports = app;
-var whitelist = ['http://Admin-Dashboard-localhost', 'http://Student-Dashboard-main-localhost', 'http://Doctor_DashBord-localhost' // Replace with your actual instructor localhost
+var whitelist = ['http://Admin-Dashboard-localhost:3000', // Replace with your actual admin localhost
+'http://Student-Dashboard-main-localhost:3000', // Replace with your actual student localhost
+'http://Doctor_DashBord-localhost:3000' // Replace with your actual instructor localhost
 ];
 var corsOptions = {
   origin: function origin(_origin, callback) {
