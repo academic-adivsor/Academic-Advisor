@@ -170,7 +170,7 @@ exports.getAdminProfileCtrl = AsyncHandler(function _callee4(req, res) {
       switch (_context4.prev = _context4.next) {
         case 0:
           _context4.next = 2;
-          return regeneratorRuntime.awrap(Admin.findById(req.userAuth._id).select("-password -createdAt -updatedAt"));
+          return regeneratorRuntime.awrap(Admin.findById(req.userAuth._id).select("-password -createdAt -updatedAt").populate("academicYears"));
 
         case 2:
           admin = _context4.sent;
