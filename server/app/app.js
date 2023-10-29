@@ -17,6 +17,7 @@ const adminRouter = require("../routes/staff/adminRouter");
 const chatRoute = require("../routes/chatRoute");
 app.use(require('../routes/chatRoute'));
 app.use(express.json());
+app.use(bodyParser.json());
 //routes
 //admin register
 app.use("/api/v1/admins", adminRouter);

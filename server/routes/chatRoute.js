@@ -3,7 +3,7 @@ const router = express.Router();
 const { processUserMessage } = require('../utlis/dialogFlowUtils'); // Make sure the path is correct
 
 router.post('/api/v1/chat', async (req, res) => {
-  const userMessage = req?.body?.message;
+  const userMessage = req.body.message;
 
   try {
     const botResponse = await processUserMessage(userMessage);
@@ -14,5 +14,6 @@ router.post('/api/v1/chat', async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
 
 module.exports = router;

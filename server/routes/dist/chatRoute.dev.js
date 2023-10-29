@@ -1,12 +1,11 @@
 "use strict";
 
-// chatRoute.js
 var express = require('express');
 
 var router = express.Router();
 
 var _require = require('../utlis/dialogFlowUtils'),
-    processUserMessage = _require.processUserMessage; // Replace with the actual path
+    processUserMessage = _require.processUserMessage; // Make sure the path is correct
 
 
 router.post('/api/v1/chat', function _callee(req, res) {
@@ -18,7 +17,7 @@ router.post('/api/v1/chat', function _callee(req, res) {
           userMessage = req.body.message;
           _context.prev = 1;
           _context.next = 4;
-          return regeneratorRuntime.awrap(processUserMessage(userMessage, sessionId));
+          return regeneratorRuntime.awrap(processUserMessage(userMessage));
 
         case 4:
           botResponse = _context.sent;
