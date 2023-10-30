@@ -51,7 +51,7 @@ app.use("/api/v1/chat", chatRoute); //Error middlewares
 
 app.use(notFoundErr);
 app.use(globalErrHandler);
-var whitelist = ['http://Admin-Dashboard-localhost:8800', 'http://Student-Dashboard-main-localhost:8800', 'http://Doctor_DashBord-localhost:8800', 'http://localhost:8800'];
+var whitelist = ['file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/Admin-Dashboard/index.html', 'file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/Student-Dashboard-main/index.html', 'file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/Doctor_DashBord/index.html', 'file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/index.html'];
 var corsOptions = {
   origin: function origin(_origin, callback) {
     if (whitelist.indexOf(_origin) !== -1) {
