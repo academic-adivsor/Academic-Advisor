@@ -5,8 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 var _require = require('../utlis/dialogFlowUtils'),
-    processUserMessage = _require.processUserMessage; // Make sure the path is correct
-
+    processUserMessage = _require.processUserMessage;
 
 router.post('/api/v1/chat', function _callee(req, res) {
   var userMessage, botResponse;
@@ -14,7 +13,8 @@ router.post('/api/v1/chat', function _callee(req, res) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          userMessage = req.body.message;
+          userMessage = req.body.message; //message
+
           _context.prev = 1;
           _context.next = 4;
           return regeneratorRuntime.awrap(processUserMessage(userMessage));
