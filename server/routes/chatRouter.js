@@ -1,8 +1,8 @@
 const express = require('express');
-const router = express.Router();
+const chatRouter = express.Router();
 const { processUserMessage } = require('../utlis/dialogFlowUtils');
 
-router.post('/api/v1/chat', async (req, res) => {
+chatRouter.post("/api/v1/chat", async (req, res) => {
   const userMessage = req.body.message;
 //message
   try {
@@ -16,4 +16,4 @@ router.post('/api/v1/chat', async (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = chatRouter;

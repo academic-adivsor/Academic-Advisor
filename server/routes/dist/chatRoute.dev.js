@@ -2,12 +2,12 @@
 
 var express = require('express');
 
-var router = express.Router();
+var chatRouter = express.Router();
 
 var _require = require('../utlis/dialogFlowUtils'),
     processUserMessage = _require.processUserMessage;
 
-router.post('/api/v1/chat', function _callee(req, res) {
+chatRouter.post("/api/v1/chat", function _callee(req, res) {
   var userMessage, botResponse;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -42,5 +42,5 @@ router.post('/api/v1/chat', function _callee(req, res) {
     }
   }, null, null, [[1, 8]]);
 });
-module.exports = router;
+module.exports = chatRouter;
 //# sourceMappingURL=chatRoute.dev.js.map

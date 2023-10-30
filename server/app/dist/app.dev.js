@@ -33,9 +33,9 @@ var yearGroupRouter = require("../routes/academics/yearGroups");
 
 var adminRouter = require("../routes/staff/adminRouter");
 
-var chatRoute = require("../routes/chatRoute");
+var chatRouter = require("../routes/chatRouter");
 
-app.use(require('../routes/chatRoute'));
+app.use(require('../routes/chatRouter'));
 app.use(express.json());
 app.use(bodyParser.json()); //routes
 //admin register
@@ -47,7 +47,7 @@ app.use("/api/v1/class-levels", classLevelRouter);
 app.use("/api/v1/programs", programRouter);
 app.use("/api/v1/subjects", subjectRouter);
 app.use("/api/v1/year-groups", yearGroupRouter);
-app.use("/api/v1/chat", chatRoute); //Error middlewares
+app.use("/api/v1/chat", chatRouter); //Error middlewares
 
 app.use(notFoundErr);
 app.use(globalErrHandler);

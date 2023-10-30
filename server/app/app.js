@@ -14,8 +14,8 @@ const programRouter=require("../routes/academics/program");
 const subjectRouter=require("../routes/academics/subjects");
 const yearGroupRouter=require("../routes/academics/yearGroups");
 const adminRouter = require("../routes/staff/adminRouter");
-const chatRoute = require("../routes/chatRoute");
-app.use(require('../routes/chatRoute'));
+const chatRouter = require("../routes/chatRouter");
+app.use(require('../routes/chatRouter'));
 app.use(express.json());
 app.use(bodyParser.json());
 //routes
@@ -27,7 +27,7 @@ app.use("/api/v1/class-levels", classLevelRouter);
 app.use("/api/v1/programs", programRouter);
 app.use("/api/v1/subjects", subjectRouter);
 app.use("/api/v1/year-groups", yearGroupRouter);
-app.use("/api/v1/chat", chatRoute);
+app.use("/api/v1/chat", chatRouter);
 //Error middlewares
 app.use(notFoundErr);
 app.use(globalErrHandler);
