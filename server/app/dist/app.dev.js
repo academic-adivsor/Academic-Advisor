@@ -51,7 +51,7 @@ app.use("/api/v1/chat", chatRouter); //Error middlewares
 
 app.use(notFoundErr);
 app.use(globalErrHandler);
-var whitelist = ['file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/Admin-Dashboard/index.html', 'file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/Student-Dashboard-main/index.html', 'file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/Doctor_DashBord/index.html', 'file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/index.html'];
+var whitelist = ['http://192.168.1.7:8080', 'http://127.0.0.1:8080'];
 var corsOptions = {
   origin: function origin(_origin, callback) {
     if (whitelist.indexOf(_origin) !== -1) {

@@ -32,10 +32,8 @@ app.use("/api/v1/chat", chatRouter);
 app.use(notFoundErr);
 app.use(globalErrHandler);
 const whitelist = [
-  'file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/Admin-Dashboard/index.html',
-  'file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/Student-Dashboard-main/index.html',
-  'file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/Doctor_DashBord/index.html',
-  'file:///C:/Users/Hussein/OneDrive%20-%20MAM%20(Faculty%20of%20Computer%20Science)/Desktop/FGP/AA/client/index.html',
+  'http://192.168.1.7:8080',
+  'http://127.0.0.1:8080',
 
 ];
 
