@@ -3,6 +3,8 @@
 var _require = require('dialogflow'),
     SessionsClient = _require.SessionsClient;
 
+var serviceAccount = require('../../dialogflow-credentials.json');
+
 var processUserMessage = function processUserMessage(userMessage, sessionId, serviceAccount) {
   var sessionClient, session, queryInput, responses;
   return regeneratorRuntime.async(function processUserMessage$(_context) {

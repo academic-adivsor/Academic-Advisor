@@ -1,4 +1,5 @@
 const { SessionsClient } = require('dialogflow');
+const serviceAccount = require('../../dialogflow-credentials.json');
 
 const processUserMessage = async (userMessage, sessionId, serviceAccount) => {
   const sessionClient = new SessionsClient({ credentials: serviceAccount });

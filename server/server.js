@@ -38,7 +38,7 @@ const classLevelRouter = require("./routes/academics/classLevel");
 const programRouter = require("./routes/academics/program");
 const subjectRouter = require("./routes/academics/subjects");
 const yearGroupRouter = require("./routes/academics/yearGroups");
-const chatRoute = require("./routes/chatRoute");
+const chatRouter = require("./routes/chatRouter");
 
 app.use("/api/v1/admins", adminRouter);
 app.use("/api/v1/academic-years", academicYearRouter);
@@ -47,7 +47,7 @@ app.use("/api/v1/class-levels", classLevelRouter);
 app.use("/api/v1/programs", programRouter);
 app.use("/api/v1/subjects", subjectRouter);
 app.use("/api/v1/year-groups", yearGroupRouter);
-app.use("/api/v1/chat", chatRoute);
+app.use("/api/v1/chat", chatRouter);
 
 // Error middlewares
 app.use((req, res, next) => {
@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  console.error('Error:', error);
+  console.error('Error:', err);
   res.status(500).json({ message: 'Internal Server Error' });
 });
 
