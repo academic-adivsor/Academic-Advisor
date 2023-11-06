@@ -2,9 +2,9 @@ require("../config/dbConnect");
 const private_key = process.env.DIALOGFLOW_PRIVATE_KEY;
 const client_email = process.env.DIALOGFLOW_CLIENT_EMAIL;
 const express = require("express");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const cors = require('cors');
+const cors = require("cors");
 const app = express();
 const { globalErrHandler, notFoundErr, } = require("../middlewares/globalErrHandler");
 const academicTermRouter = require("../routes/academics/academicTerm");
@@ -15,7 +15,7 @@ const subjectRouter=require("../routes/academics/subjects");
 const yearGroupRouter=require("../routes/academics/yearGroups");
 const adminRouter = require("../routes/staff/adminRouter");
 const chatRouter = require("../routes/chatRouter");
-app.use(require('../routes/chatRouter'));
+app.use(require("../routes/chatRouter"));
 app.use(express.json());
 app.use(bodyParser.json());
 //routes
@@ -60,7 +60,7 @@ const sessionClient = new dialogflow.SessionsClient({
   }
 });
 
-const sessionPath = sessionClient.sessionPath('parker-pslk', uuid.v4());
+const sessionPath = sessionClient.sessionPath("parker-pslk", uuid.v4());
 
 const processUserMessage = async (userMessage) => {
   const request = {

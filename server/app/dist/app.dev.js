@@ -7,11 +7,11 @@ var client_email = process.env.DIALOGFLOW_CLIENT_EMAIL;
 
 var express = require("express");
 
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 
 var morgan = require("morgan");
 
-var cors = require('cors');
+var cors = require("cors");
 
 var app = express();
 
@@ -35,7 +35,7 @@ var adminRouter = require("../routes/staff/adminRouter");
 
 var chatRouter = require("../routes/chatRouter");
 
-app.use(require('../routes/chatRouter'));
+app.use(require("../routes/chatRouter"));
 app.use(express.json());
 app.use(bodyParser.json()); //routes
 //admin register
@@ -74,7 +74,7 @@ var sessionClient = new dialogflow.SessionsClient({
     client_email: client_email
   }
 });
-var sessionPath = sessionClient.sessionPath('parker-pslk', uuid.v4());
+var sessionPath = sessionClient.sessionPath("parker-pslk", uuid.v4());
 
 var processUserMessage = function processUserMessage(userMessage) {
   var request, responses, botResponse;

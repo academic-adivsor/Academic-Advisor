@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require("express");
 const chatRouter = express.Router();
-const { processUserMessage } = require('../utlis/dialogFlowUtils');
+const { processUserMessage } = require("../utlis/dialogFlowUtils");
 
 chatRouter.post("/chat", async (req, res) => {
   const userMessage = req.body.message;

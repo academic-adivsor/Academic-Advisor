@@ -4,15 +4,15 @@ require("dotenv").config();
 
 var express = require("express");
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
-var http = require('http');
+var http = require("http");
 
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 
-var dialogflow = require('dialogflow');
+var dialogflow = require("dialogflow");
 
-var uuid = require('uuid');
+var uuid = require("uuid");
 
 require("./config/dbConnect")(); // This will call the function and attempt to connect to the database.
 

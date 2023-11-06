@@ -1,11 +1,11 @@
 require("dotenv").config(); 
 
 const express = require("express");
-const mongoose = require('mongoose');
-const http = require('http');
-const bodyParser = require('body-parser');
-const dialogflow = require('dialogflow');
-const uuid = require('uuid');
+const mongoose = require("mongoose");
+const http = require("http");
+const bodyParser = require("body-parser");
+const dialogflow = require("dialogflow");
+const uuid = require("uuid");
 require("./config/dbConnect")(); // This will call the function and attempt to connect to the database.
 
 const app = express();

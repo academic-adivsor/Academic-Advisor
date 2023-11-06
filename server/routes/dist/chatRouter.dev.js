@@ -1,10 +1,10 @@
 "use strict";
 
-var express = require('express');
+var express = require("express");
 
 var chatRouter = express.Router();
 
-var _require = require('../utlis/dialogFlowUtils'),
+var _require = require("../utlis/dialogFlowUtils"),
     processUserMessage = _require.processUserMessage;
 
 chatRouter.post("/chat", function _callee(req, res) {
