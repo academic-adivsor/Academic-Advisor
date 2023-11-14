@@ -7,7 +7,11 @@ var chatRouter = express.Router();
 var _require = require("../utlis/dialogFlowUtils"),
     processUserMessage = _require.processUserMessage;
 
-chatRouter.post("/chat", function _callee(req, res) {
+var sessionId = ""; // Set an appropriate session ID
+
+var serviceAccount = require('../../dialogflow-credentials.json');
+
+chatRouter.post("/", function _callee(req, res) {
   var userMessage, botResponse;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {

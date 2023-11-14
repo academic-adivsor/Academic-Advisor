@@ -1,8 +1,10 @@
 const express = require("express");
 const chatRouter = express.Router();
 const { processUserMessage } = require("../utlis/dialogFlowUtils");
+const sessionId = "";  // Set an appropriate session ID
+const serviceAccount = require('../../dialogflow-credentials.json');
 
-chatRouter.post("/chat", async (req, res) => {
+chatRouter.post("/", async (req, res) => {
   const userMessage = req.body.message;
 
   try {
