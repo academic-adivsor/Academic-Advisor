@@ -2,6 +2,8 @@ require("dotenv").config();
 const http = require("http");
 require("./config/dbConnect");
 const app = require("./app/app");
+const cors = require('cors');
+app.use(cors());
 const PORT = process.env.PORT || 2020;
 //server
 const server = http.createServer(app);

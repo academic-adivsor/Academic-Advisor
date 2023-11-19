@@ -8,6 +8,9 @@ require("./config/dbConnect");
 
 var app = require("./app/app");
 
+var cors = require('cors');
+
+app.use(cors());
 var PORT = process.env.PORT || 2020; //server
 
 var server = http.createServer(app);

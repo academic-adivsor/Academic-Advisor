@@ -1,8 +1,14 @@
 const express = require("express");
 const chatRouter = express.Router();
 const { processUserMessage } = require("../utlis/dialogFlowUtils");
-const sessionId = "";  // Set an appropriate session ID
-const serviceAccount = require('../../dialogflow-credentials.json');
+const serviceAccount = require('../../parker-pslk-7df273a4b799.json');
+
+// Function to generate a session ID
+const generateSessionId = () => {
+  // Generate a unique session ID using a library or any method of your choice
+  // For simplicity, you can use a timestamp or a random string
+  return Date.now().toString();
+};
 
 chatRouter.post("/", async (req, res) => {
   const userMessage = req.body.message;
@@ -13,7 +19,11 @@ chatRouter.post("/", async (req, res) => {
       return res.status(400).json({ message: 'Bad Request: Missing message' });
     }
 
-    const botResponse = await processUserMessage(userMessage);
+    // Generate a session ID
+    const sessionId = generateSessionId();
+
+    // Process user message with the generated session ID
+    const botResponse = await processUserMessage(userMessage, sessionId, serviceAccount);
 
     res.json({ message: botResponse });
   } catch (error) {
