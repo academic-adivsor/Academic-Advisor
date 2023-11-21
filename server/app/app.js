@@ -1,4 +1,8 @@
+require("../config/dbConnect");
+const private_key = process.env.DIALOGFLOW_PRIVATE_KEY;
+const client_email = process.env.DIALOGFLOW_CLIENT_EMAIL;
 const express = require("express");
+const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const cors = require('cors');
 const app = express();
@@ -10,7 +14,10 @@ const programRouter=require("../routes/academics/program");
 const subjectRouter=require("../routes/academics/subjects");
 const yearGroupRouter=require("../routes/academics/yearGroups");
 const adminRouter = require("../routes/staff/adminRouter");
+const chatRoute = require("../routes/chatRoute");
+app.use(require('../routes/chatRoute'));
 app.use(express.json());
+app.use(bodyParser.json());
 //routes
 //admin register
 app.use("/api/v1/admins", adminRouter);
@@ -21,15 +28,16 @@ app.use("/api/v1/programs", programRouter);
 app.use("/api/v1/subjects", subjectRouter);
 app.use("/api/v1/year-groups", yearGroupRouter);
 app.use("/api/v1/teachers", teachersRouter);
+app.use("/api/v1/chat", chatRoute);
 //Error middlewares
 app.use(notFoundErr);
 app.use(globalErrHandler);
-module.exports = app;
-
 const whitelist = [
-	'http://Admin-Dashboard-localhost',   
-	'http://Student-Dashboard-main-localhost',
-	'http://Doctor_DashBord-localhost', // Replace with your actual instructor localhost
+  'http://Admin-Dashboard-localhost:8800',
+  'http://Student-Dashboard-main-localhost:8800',
+  'http://Doctor_DashBord-localhost:8800',
+  'http://localhost:8800',
+
 ];
 
 const corsOptions = {
@@ -44,6 +52,41 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.listen(8801, () => {
-  console.log('Server is running on http://localhost:8801');
+const dialogflow = require('dialogflow');
+const uuid = require('uuid');
+
+// Initialize session client
+const sessionClient = new dialogflow.SessionsClient({
+  credentials: {
+    private_key,
+    client_email
+  }
 });
+
+const sessionPath = sessionClient.sessionPath('parker-pslk', uuid.v4());
+
+const processUserMessage = async (userMessage) => {
+  const request = {
+    session: sessionPath,
+    queryInput: {
+      text: {
+        text: userMessage,
+        languageCode: 'en-US',
+      },
+    },
+  };
+
+  try {
+    const responses = await sessionClient.detectIntent(request);
+    const botResponse = responses[0].queryResult.fulfillmentText;
+
+    return botResponse;
+  } catch (error) {
+    console.error('Error:', error);
+    return 'Oops! Something went wrong. Please try again.'; // Default error message
+  }
+};
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+module.exports = app;

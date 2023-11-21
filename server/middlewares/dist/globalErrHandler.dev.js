@@ -10,7 +10,7 @@ var globalErrHandler = function globalErrHandler(err, req, res, next) {
     message: message,
     stack: stack
   });
-}; //not found
+}; // not found
 
 
 var notFoundErr = function notFoundErr(req, res, next) {

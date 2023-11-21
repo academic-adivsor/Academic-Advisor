@@ -1,6 +1,13 @@
 "use strict";
 
+require("../config/dbConnect");
+
+var private_key = process.env.DIALOGFLOW_PRIVATE_KEY;
+var client_email = process.env.DIALOGFLOW_CLIENT_EMAIL;
+
 var express = require("express");
+
+var bodyParser = require('body-parser');
 
 var morgan = require("morgan");
 
@@ -26,7 +33,11 @@ var yearGroupRouter = require("../routes/academics/yearGroups");
 
 var adminRouter = require("../routes/staff/adminRouter");
 
-app.use(express.json()); //routes
+var chatRoute = require("../routes/chatRoute");
+
+app.use(require('../routes/chatRoute'));
+app.use(express.json());
+app.use(bodyParser.json()); //routes
 //admin register
 
 app.use("/api/v1/admins", adminRouter);
@@ -35,13 +46,12 @@ app.use("/api/v1/academic-terms", academicTermRouter);
 app.use("/api/v1/class-levels", classLevelRouter);
 app.use("/api/v1/programs", programRouter);
 app.use("/api/v1/subjects", subjectRouter);
-app.use("/api/v1/year-groups", yearGroupRouter); //Error middlewares
+app.use("/api/v1/year-groups", yearGroupRouter);
+app.use("/api/v1/chat", chatRoute); //Error middlewares
 
 app.use(notFoundErr);
 app.use(globalErrHandler);
-module.exports = app;
-var whitelist = ['http://Admin-Dashboard-localhost', 'http://Student-Dashboard-main-localhost', 'http://Doctor_DashBord-localhost' // Replace with your actual instructor localhost
-];
+var whitelist = ['http://Admin-Dashboard-localhost:8800', 'http://Student-Dashboard-main-localhost:8800', 'http://Doctor_DashBord-localhost:8800', 'http://localhost:8800'];
 var corsOptions = {
   origin: function origin(_origin, callback) {
     if (whitelist.indexOf(_origin) !== -1) {
@@ -52,7 +62,61 @@ var corsOptions = {
   }
 };
 app.use(cors(corsOptions));
-app.listen(8801, function () {
-  console.log('Server is running on http://localhost:8801');
+
+var dialogflow = require('dialogflow');
+
+var uuid = require('uuid'); // Initialize session client
+
+
+var sessionClient = new dialogflow.SessionsClient({
+  credentials: {
+    private_key: private_key,
+    client_email: client_email
+  }
 });
+var sessionPath = sessionClient.sessionPath('parker-pslk', uuid.v4());
+
+var processUserMessage = function processUserMessage(userMessage) {
+  var request, responses, botResponse;
+  return regeneratorRuntime.async(function processUserMessage$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          request = {
+            session: sessionPath,
+            queryInput: {
+              text: {
+                text: userMessage,
+                languageCode: 'en-US'
+              }
+            }
+          };
+          _context.prev = 1;
+          _context.next = 4;
+          return regeneratorRuntime.awrap(sessionClient.detectIntent(request));
+
+        case 4:
+          responses = _context.sent;
+          botResponse = responses[0].queryResult.fulfillmentText;
+          return _context.abrupt("return", botResponse);
+
+        case 9:
+          _context.prev = 9;
+          _context.t0 = _context["catch"](1);
+          console.error('Error:', _context.t0);
+          return _context.abrupt("return", 'Oops! Something went wrong. Please try again.');
+
+        case 13:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, null, null, [[1, 9]]);
+};
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+module.exports = app;
 //# sourceMappingURL=app.dev.js.map

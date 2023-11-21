@@ -101,11 +101,17 @@ const generateResponse = (incomingChatLi) => {
         })
     }
 
-    fetch(API_URL , requestOptions).then(res => res.json()).then(data => {
+    fetch(API_URL, requestOptions)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);  // Add this line to see the API response
         messageElement.textContent = data.choices[0].message.content;
-    }).catch((error) => {
+    })
+    .catch((error) => {
+        console.error('Error:', error);
         messageElement.textContent = "Oops! Something went wrong. Please try again.";
-    }).finally(() => chatbox.scrollTo(0 , chatbox.scrollHeight));
+    })
+    .finally(() => chatbox.scrollTo(0 , chatbox.scrollHeight));
 }
 
 const handleChat = () => {
