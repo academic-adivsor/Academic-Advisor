@@ -1,7 +1,7 @@
 const AysncHandler = require("express-async-handler");
 const Teacher = require("../../model/staff/Teacher");
-const generateToken = require("../../utils/generateToken");
-const { hashPassword, isPassMatched } = require("../../utils/helpers");
+const generateToken = require("../../utlis/generateToken");
+const { hashPassword, isPassMatched } = require("../../utlis/helpers");
 
 //@desc  Admin Register Teacher
 //@route POST /api/teachers/admin/register

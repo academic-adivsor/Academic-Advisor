@@ -140,33 +140,17 @@
             </div>
         </main>
 
-        <div class="right">
-            <button class="chatbot-toggler">
-                <span class="material-symbols-outlined">mode_comment</span>
-                <span class="material-symbols-outlined">close</span>
-            </button>
-            <div class="chatbot">
-                <div class="header">
-                    <h2>Chatbot</h2>
-                    <span class="close-btn material-symbols-outlined">close</span>
-                </div>
-                <ul class="chatbox">
-                    <li class="chat incoming">
-                        <span class="material-symbols-outlined">smart_toy</span>
-                        <P>Hi there 👋 <br> How can I help you today ?</P>
-                    </li>
-                    <li class="chat outgoing">
-                        <P></P>
-                    </li>
-                </ul>
-                <div class="chat-input">
-                    <textarea placeholder="Enter Your Question..." id="" required></textarea>
-                    <span id="send-btn" class="material-symbols-outlined">send</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="timeTable.js"></script>
-    <script src="app.js"></script>
+
+      <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+      intent="Welcome,economic_case,agent_name,subject_case,subject_case_yes"
+      chat-title="Parker"
+      agent-id="02fc1fe1-bf8a-4de4-9e64-3d3aec3ced9a"
+      language-code="en"
+    ></df-messenger>
+</div>
+
+<script src="timeTable.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

@@ -1,40 +1,33 @@
 "use strict";
 
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
-var connectDB = function connectDB() {
-  var conn;
-  return regeneratorRuntime.async(function connectDB$(_context) {
+var dbConnect = function dbConnect() {
+  return regeneratorRuntime.async(function dbConnect$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
           _context.next = 3;
-          return regeneratorRuntime.awrap(mongoose.connect(process.env.MONGO_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true // ... other options
-
-          }));
+          return regeneratorRuntime.awrap(mongoose.connect(process.env.MONGO_URL));
 
         case 3:
-          conn = _context.sent;
-          console.log("MongoDB Connected: ".concat(conn.connection.host));
-          _context.next = 11;
+          console.log("DB Connected Successfully");
+          _context.next = 9;
           break;
 
-        case 7:
-          _context.prev = 7;
+        case 6:
+          _context.prev = 6;
           _context.t0 = _context["catch"](0);
-          console.error(_context.t0);
-          process.exit(1);
+          console.log("DB Connection failed", _context.t0.message);
 
-        case 11:
+        case 9:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 7]]);
+  }, null, null, [[0, 6]]);
 };
 
-module.exports = connectDB;
+dbConnect();
 //# sourceMappingURL=dbConnect.dev.js.map
