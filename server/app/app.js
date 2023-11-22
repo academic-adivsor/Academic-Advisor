@@ -31,5 +31,5 @@ app.use("/api/v1/chat", chatRouter);
 //Error middlewares
 app.use(notFoundErr);
 app.use(globalErrHandler);
-//model
+
 module.exports = app;
