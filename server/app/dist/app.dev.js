@@ -40,6 +40,7 @@ app.use("/api/v1/teachers", teachersRouter);
 app.use("/api/v1/chat", chatRouter); //Error middlewares
 
 app.use(notFoundErr);
-app.use(globalErrHandler);
+app.use(globalErrHandler); //model
+
 module.exports = app;
 //# sourceMappingURL=app.dev.js.map
