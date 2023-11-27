@@ -22,6 +22,8 @@ var adminRouter = require("../routes/staff/adminRouter");
 
 var teachersRouter = require("../routes/staff/teachers");
 
+var studentRouter = require("../routes/staff/student");
+
 var chatRouter = require("../routes/chatRouter");
 
 var app = express(); //Middlewares
@@ -37,6 +39,7 @@ app.use("/api/v1/programs", programRouter);
 app.use("/api/v1/subjects", subjectRouter);
 app.use("/api/v1/year-groups", yearGroupRouter);
 app.use("/api/v1/teachers", teachersRouter);
+app.use("/api/v1/students", studentRouter);
 app.use("/api/v1/chat", chatRouter); //Error middlewares
 
 app.use(notFoundErr);
