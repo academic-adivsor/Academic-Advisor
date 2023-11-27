@@ -1,16 +1,16 @@
-const Student = require("../model/academic/Student");
+const Student = require("../model/Academic/Student");
+const Teacher = require("../model/staff/Teacher");
 
-
-const isStudent = async (req, res, next) => {
+const isStdudent = async (req, res, next) => {
   //find the user
   const userId = req?.userAuth?._id;
-  const studentFound = await Student.findById(userId);
-  //check if admin
-  if (studentFound?.role === "student") {
+  const teacherFound = await Student.findById(userId);
+  //check if student
+  if (teacherFound?.role === "student") {
     next();
   } else {
     next(new Error("Access Denied, Student only"));
   }
 };
 
-module.exports = isStudent;
+module.exports = isStdudent;

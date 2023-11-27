@@ -1,35 +1,36 @@
 const AysncHandler = require("express-async-handler");
-const Student = require("../../model/academic/Student");
-const { hashPassword } = require("../../utlis/helpers");
+const Student = require("../../model/Academic/Student");
 const generateToken = require("../../utlis/generateToken");
-//@desc  Admin Register Teacher
+const { hashPassword, isPassMatched } = require("../../utlis/helpers");
+
+//@desc  Admin Register Student
 //@route POST /api/students/admin/register
 //@acess  Private Admin only
 
 exports.adminRegisterStudent = AysncHandler(async (req, res) => {
   const { name, email, password } = req.body;
-    //check if teacher already exists
-    const student = await Student.findOne({ email });
-    if (student) {
-      throw new Error("Student already employed");
-    }
-    //Hash password
-    const hashedPassword = await hashPassword(password);
-    // create
-    const studentRegistered = await Student.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
-    //send student data
-    res.status(201).json({
-      status: "success",
-      message: "Student registered successfully",
-      data: studentRegistered,
-   });
+  //check if teacher already exists
+  const student = await Student.findOne({ email });
+  if (student) {
+    throw new Error("Student already employed");
+  }
+  //Hash password
+  const hashedPassword = await hashPassword(password);
+  // create
+  const studentRegistered = await Student.create({
+    name,
+    email,
+    password: hashedPassword,
+  });
+  //send student data
+  res.status(201).json({
+    status: "success",
+    message: "Student registered successfully",
+    data: studentRegistered,
+  });
 });
 
-//@desc    login a student
+//@desc    login  student
 //@route   POST /api/v1/students/login
 //@access  Public
 
@@ -54,7 +55,7 @@ exports.loginStudent = AysncHandler(async (req, res) => {
 });
 
 //@desc    Student Profile
-//@route   GET /api/v1/student/profile
+//@route   GET /api/v1/students/profile
 //@access  Private Student only
 
 exports.getStudentProfile = AysncHandler(async (req, res) => {
@@ -72,11 +73,11 @@ exports.getStudentProfile = AysncHandler(async (req, res) => {
 });
 
 //@desc    Get all Students
-//@route   GET /api/v1/admin/teachers
+//@route   GET /api/v1/admin/students
 //@access  Private admin only
 
-exports.getAllStudentsAdmin = AysncHandler(async (req, res) => {
-  const student = await Student.find();
+exports.getAllStudentsByAdmin = AysncHandler(async (req, res) => {
+  const students = await Student.find();
   res.status(200).json({
     status: "success",
     message: "Students fetched successfully",
@@ -90,7 +91,7 @@ exports.getAllStudentsAdmin = AysncHandler(async (req, res) => {
 
 exports.getStudentByAdmin = AysncHandler(async (req, res) => {
   const studentID = req.params.studentID;
-  //find the student
+  //find the teacher
   const student = await Student.findById(studentID);
   if (!student) {
     throw new Error("Student not found");
@@ -102,7 +103,7 @@ exports.getStudentByAdmin = AysncHandler(async (req, res) => {
   });
 });
 
-//@desc    Student updating profile admin
+//@desc    Student updating profile
 //@route    UPDATE /api/v1/students/update
 //@access   Private Student only
 
@@ -155,43 +156,43 @@ exports.studentUpdateProfile = AysncHandler(async (req, res) => {
   }
 });
 
-//@desc     Admin updating Student profile
+//@desc     Admin updating Students eg: Assigning classes....
 //@route    UPDATE /api/v1/students/:studentID/update/admin
 //@access   Private Admin only
 
-exports.adminUpdateStudent = AysncHandler(async(req,res)=>
-{
-  const {classLevels, academicYear, program, name, email, prefectName} = 
-   req.body;
+exports.adminUpdateStudent = AysncHandler(async (req, res) => {
+  const { classLevels, academicYear, program, name, email, prefectName } =
+    req.body;
 
-   //find the student by id
-   const studentFound = await Student.findById(req.params.studentID);
-    if(!studentFound){
-     throw new Error('Student not found')
-   }
-
-   //update
-   const studentUpdated = await Student.findByIdAndUpdate(req.params.studentID, 
-   {
-    $set:{
-      name,
-      email,
-      academicYear,
-      program,
-      prefectName,
-    },
-    $addToSet: {
-      classLevels,
-    },
-  },
-  {
-    new: true,
+  //find the student by id
+  const studentFound = await Student.findById(req.params.studentID);
+  if (!studentFound) {
+    throw new Error("Student not found");
   }
- );
- //send response
- res.status(200).json({
-  status: "success",
-  data: studentUpdated,
-  message: "Student updated successfully",
- });
+
+  //update
+  const studentUpdated = await Student.findByIdAndUpdate(
+    req.params.studentID,
+    {
+      $set: {
+        name,
+        email,
+        academicYear,
+        program,
+        prefectName,
+      },
+      $addToSet: {
+        classLevels,
+      },
+    },
+    {
+      new: true,
+    }
+  );
+  //send response
+  res.status(200).json({
+    status: "success",
+    data: studentUpdated,
+    message: "Student updated successfully",
+  });
 });

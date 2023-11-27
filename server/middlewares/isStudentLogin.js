@@ -1,4 +1,4 @@
-const Student = require("../model/academic/Student");
+const Student = require("../model/Academic/Student");
 const verifyToken = require("../utlis/verifyToken");
 
 const isStudentLogin = async (req, res, next) => {
