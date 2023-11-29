@@ -97,7 +97,7 @@ var studentSchema = new mongoose.Schema({
   // ],
   //year group
   yearGraduated: {
-    type: String
+    type: Date
   }
 }, {
   timestamps: true
