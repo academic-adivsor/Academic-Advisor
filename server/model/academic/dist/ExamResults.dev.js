@@ -5,9 +5,8 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema; //exam result schema
 
 var examResultSchema = new Schema({
-  student: {
-    type: Schema.Types.ObjectId,
-    ref: "Student",
+  studentID: {
+    type: String,
     required: true
   },
   exam: {
@@ -32,23 +31,15 @@ var examResultSchema = new Schema({
   status: {
     type: String,
     required: true,
-    "enum": ["passed", "passed"],
-    "default": "Pass"
+    "enum": ["Pass", "Fail"],
+    "default": "Fail"
   },
   //Excellent/Good/Poor
   remarks: {
     type: String,
     required: true,
-    "enum": ["Excellent", "Good", "Poor"],
+    "enum": ["Excellent", "Good", "Poor", "Fair"],
     "default": "Poor"
-  },
-  position: {
-    type: Number,
-    required: true
-  },
-  subject: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Subject"
   },
   classLevel: {
     type: mongoose.Schema.Types.ObjectId,

@@ -16,6 +16,8 @@ const examRouter=require("../routes/academics/examRoutes");
 const studentRouter = require("../routes/staff/student");
 const questionsRouter=require("../routes/academics/questionRoutes");
 const chatRouter = require("../routes/chatRouter");
+const examResultRouter=require("../routes/academics/examRsultsRoute");
+const {checkExamResults}=require("../controller/academics/examResults");
 
 const app = express();
 
@@ -34,6 +36,7 @@ app.use("/api/v1/teachers", teachersRouter);
 app.use("/api/v1/exams", examRouter);
 app.use("/api/v1/questions", questionsRouter);
 app.use("/api/v1/students", studentRouter);
+app.use("/api/v1/exam-results", examResultRouter);
 app.use("/api/v1/chat", chatRouter);
 
 //Error middlewares

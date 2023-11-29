@@ -30,6 +30,11 @@ var questionsRouter = require("../routes/academics/questionRoutes");
 
 var chatRouter = require("../routes/chatRouter");
 
+var examResultRouter = require("../routes/academics/examRsultsRoute");
+
+var _require2 = require("../controller/academics/examResults"),
+    checkExamResults = _require2.checkExamResults;
+
 var app = express(); //Middlewares
 
 app.use(express.json()); //pass incoming json data
@@ -46,6 +51,7 @@ app.use("/api/v1/teachers", teachersRouter);
 app.use("/api/v1/exams", examRouter);
 app.use("/api/v1/questions", questionsRouter);
 app.use("/api/v1/students", studentRouter);
+app.use("/api/v1/exam-results", examResultRouter);
 app.use("/api/v1/chat", chatRouter); //Error middlewares
 
 app.use(notFoundErr);
