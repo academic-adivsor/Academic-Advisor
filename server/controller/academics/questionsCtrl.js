@@ -1,6 +1,6 @@
 const AysncHandler = require("express-async-handler");
 const Exam = require("../../model/Academic/Exam");
-const Question = require("../../model/Academic/Questions");
+const Question = require("../../model/academic/Questions");
 
 //@desc  Create Question
 //@route POST /api/v1/questions/:examID
