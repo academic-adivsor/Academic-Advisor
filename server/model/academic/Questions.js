@@ -31,7 +31,7 @@ const questionSchema = new Schema(
     },
     isCorrect: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     createdBy: {
       type: Schema.Types.ObjectId,
