@@ -115,49 +115,104 @@ var createChatLi = function createChatLi(message, className) {
 };
 
 var generateResponse = function generateResponse(incomingChatLi) {
-  var API_URL = "https://api.openai.com/v1/chat/completions";
-  var messageElement = incomingChatLi.querySelector("p");
-  var requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ".concat(API_KEY)
-    },
-    body: JSON.stringify({
-      model: "gpt-3.5-turbo",
-      messages: [{
-        role: "user",
-        content: userMessage
-      }]
-    })
-  };
-  fetch(API_URL, requestOptions).then(function (res) {
-    return res.json();
-  }).then(function (data) {
-    console.log(data); // Add this line to see the API response
+  var API_URL, requestOptions, response, _ref, botResponse;
 
-    messageElement.textContent = data.choices[0].message.content;
-  })["catch"](function (error) {
-    console.error('Error:', error);
-    messageElement.textContent = "Oops! Something went wrong. Please try again.";
-  })["finally"](function () {
-    return chatbox.scrollTo(0, chatbox.scrollHeight);
-  });
+  return regeneratorRuntime.async(function generateResponse$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          API_URL = 'http://localhost:2020/chat';
+          requestOptions = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              message: userMessage
+            })
+          };
+          _context.prev = 2;
+          _context.next = 5;
+          return regeneratorRuntime.awrap(fetch(API_URL, requestOptions));
+
+        case 5:
+          response = _context.sent;
+
+          if (!response.ok) {
+            _context.next = 15;
+            break;
+          }
+
+          _context.next = 9;
+          return regeneratorRuntime.awrap(response.json());
+
+        case 9:
+          _ref = _context.sent;
+          botResponse = _ref.botResponse;
+          // Update the UI with the chatbot's response
+          chatDisplay.innerHTML += "<div>User: ".concat(userMessage, "</div>");
+          chatDisplay.innerHTML += "<div>Bot: ".concat(botResponse, "</div>");
+          _context.next = 16;
+          break;
+
+        case 15:
+          console.error('Error communicating with the server');
+
+        case 16:
+          _context.next = 21;
+          break;
+
+        case 18:
+          _context.prev = 18;
+          _context.t0 = _context["catch"](2);
+          console.error('Error:', _context.t0);
+
+        case 21:
+          _context.prev = 21;
+          chatbox.scrollTo(0, chatbox.scrollHeight);
+          return _context.finish(21);
+
+        case 24:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, null, null, [[2, 18, 21, 24]]);
 };
 
 var handleChat = function handleChat() {
-  userMessage = chatInput.value.trim();
-  if (!userMessage) return;
-  chatInput.value = "";
-  chatbox.appendChild(createChatLi(userMessage, "outgoing"));
-  chatbox.scrollTo(0, chatbox.scrollHeight);
-  setTimeout(function () {
-    // Display "Thinking ..." message while waiting for the response //
-    var incomingChatLi = createChatLi("Thinking...", "incoming");
-    chatbox.appendChild(incomingChatLi);
-    chatbox.scrollTo(0, chatbox.scrollHeight);
-    generateResponse(incomingChatLi);
-  }, 600);
+  var incomingChatLi;
+  return regeneratorRuntime.async(function handleChat$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          userMessage = chatInput.value.trim();
+
+          if (userMessage) {
+            _context2.next = 3;
+            break;
+          }
+
+          return _context2.abrupt("return");
+
+        case 3:
+          chatInput.value = "";
+          chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+          chatbox.scrollTo(0, chatbox.scrollHeight); // Display "Thinking..." message while waiting for the response
+
+          incomingChatLi = createChatLi("Thinking...", "incoming");
+          chatbox.appendChild(incomingChatLi);
+          chatbox.scrollTo(0, chatbox.scrollHeight); // Wait for generateResponse to complete before moving on
+
+          _context2.next = 11;
+          return regeneratorRuntime.awrap(generateResponse(incomingChatLi));
+
+        case 11:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  });
 };
 
 sendChatBtn.addEventListener("click", handleChat);

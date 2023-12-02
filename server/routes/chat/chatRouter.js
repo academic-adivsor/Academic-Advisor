@@ -1,7 +1,7 @@
 const express = require("express");
 const chatRouter = express.Router();
-const { processUserMessage } = require("../utlis/dialogFlowUtils");
-const serviceAccount = require('../../parker-pslk-7df273a4b799.json');
+const { processUserMessage } = require("../../utlis/dialogFlowUtils");
+const serviceAccount = require('../../../parker-pslk-7df273a4b799.json');
 
 // Function to generate a session ID
 const generateSessionId = () => {

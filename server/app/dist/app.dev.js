@@ -28,7 +28,7 @@ var studentRouter = require("../routes/staff/student");
 
 var questionsRouter = require("../routes/academics/questionRoutes");
 
-var chatRouter = require("../routes/chatRouter");
+var chatRouter = require("../routes/chat/chatRouter");
 
 var examResultRouter = require("../routes/academics/examRsultsRoute");
 

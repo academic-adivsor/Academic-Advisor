@@ -15,7 +15,7 @@ const teachersRouter = require("../routes/staff/teachers");
 const examRouter=require("../routes/academics/examRoutes");
 const studentRouter = require("../routes/staff/student");
 const questionsRouter=require("../routes/academics/questionRoutes");
-const chatRouter = require("../routes/chatRouter");
+const chatRouter = require("../routes/chat/chatRouter");
 const examResultRouter=require("../routes/academics/examRsultsRoute");
 const {checkExamResults}=require("../controller/academics/examResults");
 

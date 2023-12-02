@@ -86,50 +86,49 @@ const createChatLi = (message , className) => {
     return chatLi;
 }
 
-const generateResponse = (incomingChatLi) => {
-    const API_URL = "https://api.openai.com/v1/chat/completions";
-    const messageElement = incomingChatLi.querySelector("p")
+const generateResponse = async (incomingChatLi) => {
+    const API_URL = 'http://localhost:2020/chat';
     const requestOptions = {
-        method: "POST",
-        headers:{
-            "Content-Type" : "application/json",
-            "Authorization" : `Bearer ${API_KEY}`
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            model: "gpt-3.5-turbo" ,
-            messages : [{role : "user" , content : userMessage}]
-        })
-    }
+        body: JSON.stringify({ message: userMessage }),
+    };
 
-    fetch(API_URL, requestOptions)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);  // Add this line to see the API response
-        messageElement.textContent = data.choices[0].message.content;
-    })
-    .catch((error) => {
+    try {
+        const response = await fetch(API_URL, requestOptions);
+        if (response.ok) {
+            const { botResponse } = await response.json();
+            // Update the UI with the chatbot's response
+            chatDisplay.innerHTML += `<div>User: ${userMessage}</div>`;
+            chatDisplay.innerHTML += `<div>Bot: ${botResponse}</div>`;
+        } else {
+            console.error('Error communicating with the server');
+        }
+    } catch (error) {
         console.error('Error:', error);
-        messageElement.textContent = "Oops! Something went wrong. Please try again.";
-    })
-    .finally(() => chatbox.scrollTo(0 , chatbox.scrollHeight));
-}
+    } finally {
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+    }
+};
 
-const handleChat = () => {
+const handleChat = async () => {
     userMessage = chatInput.value.trim();
-    if(!userMessage)return;
+    if (!userMessage) return;
     chatInput.value = "";
 
-    chatbox.appendChild(createChatLi(userMessage , "outgoing"));
-    chatbox.scrollTo(0 , chatbox.scrollHeight);
+    chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+    chatbox.scrollTo(0, chatbox.scrollHeight);
 
-    setTimeout(() =>{
-        // Display "Thinking ..." message while waiting for the response //
-        const incomingChatLi = createChatLi("Thinking..." , "incoming");
-        chatbox.appendChild(incomingChatLi)
-        chatbox.scrollTo(0 , chatbox.scrollHeight);
-        generateResponse(incomingChatLi);
-    } , 600);
-}
+    // Display "Thinking..." message while waiting for the response
+    const incomingChatLi = createChatLi("Thinking...", "incoming");
+    chatbox.appendChild(incomingChatLi);
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+
+    // Wait for generateResponse to complete before moving on
+    await generateResponse(incomingChatLi);
+};
 
 sendChatBtn.addEventListener("click" , handleChat);
 chatbotCloseBtn.addEventListener("click" , () => document.body.classList.remove("show-chatbot"));
