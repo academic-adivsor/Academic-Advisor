@@ -4,6 +4,12 @@ require("./config/dbConnect");
 const app = require("./app/app");
 const cors = require('cors');
 app.use(cors());
+const corsOptions = {
+	origin: 'http://localhost:8000', // Update this with the actual origin of your dashboards
+	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+	credentials: true,
+	optionsSuccessStatus: 204,
+  };
 const PORT = process.env.PORT || 2020;
 //server
 const server = http.createServer(app);

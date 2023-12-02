@@ -10,7 +10,7 @@
     "install": "npm run install-server && npm run install-client",
     "start-server": "node ./server/server.js",
     "start-client": "npm start --prefix client",
-    "start": "npm run start-server & npm run start-client"
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\""
   },
   "keywords": [],
   "author": "",
