@@ -123,7 +123,7 @@ var generateResponse = function generateResponse(incomingChatLi) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          API_URL = 'http://localhost:2020/chat';
+          API_URL = 'http://localhost:2020/api/v1/chat';
           requestOptions = {
             method: 'POST',
             headers: {

@@ -90,7 +90,7 @@ const createChatLi = (message, className) => {
 }
 
 const generateResponse = async (incomingChatLi) => {
-    const API_URL = 'http://localhost:2020/chat';
+    const API_URL = 'http://localhost:2020/api/v1/chat';
     const requestOptions = {
         method: 'POST',
         headers: {
