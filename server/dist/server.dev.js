@@ -12,8 +12,7 @@ var cors = require('cors');
 
 app.use(cors());
 var corsOptions = {
-  origin: 'http://localhost:8000',
-  // Update this with the actual origin of your dashboards
+  origin: ['http://localhost:8080'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   credentials: true,
   optionsSuccessStatus: 204

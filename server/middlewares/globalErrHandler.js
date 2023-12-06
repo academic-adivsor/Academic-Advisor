@@ -13,6 +13,7 @@ const globalErrHandler = (err, req, res, next) => {
 // not found
 const notFoundErr = (req, res, next) => {
     const err = new Error(`Can't find ${req.originalUrl} on server`);
+    err.statusCode = 404; // Set the status code to 404
     next(err);
 };
 

@@ -15,6 +15,8 @@ var globalErrHandler = function globalErrHandler(err, req, res, next) {
 
 var notFoundErr = function notFoundErr(req, res, next) {
   var err = new Error("Can't find ".concat(req.originalUrl, " on server"));
+  err.statusCode = 404; // Set the status code to 404
+
   next(err);
 };
 

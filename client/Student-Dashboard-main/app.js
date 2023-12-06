@@ -68,7 +68,7 @@ setData(day); //To set the data in the table on loading window.
 document.querySelector('.timetable div h2').innerHTML = "Today's Timetable"; //To prevent overwriting the heading on loading;
 
 // ===============> chat-bot Code Go as Follows <================ //
-const chatInput = document.querySelector(".chat-input textarea")
+const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 const chatbox = document.querySelector(".chatbox");
 const chatbotToggler = document.querySelector(".chatbot-toggler");
@@ -77,10 +77,13 @@ const chatbotCloseBtn = document.querySelector(".close-btn");
 let userMessage;
 const API_KEY = "sk-7Palc22EziLHISrxbAVQT38lbkFJY9WCOZiqdBhebjUy2XpH";
 
-const createChatLi = (message , className) => {
+// Define chatDisplay
+const chatDisplay = document.getElementById("chatbot");
+
+const createChatLi = (message, className) => {
     const chatLi = document.createElement("li");
-    chatLi.classList.add("chat" , className);
-    let chatContent = className === "outgoing" ? `<P></P>` : `<span class="material-symbols-outlined">smart_toy</span><P></P>`;
+    chatLi.classList.add("chat", className);
+    let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
     chatLi.innerHTML = chatContent;
     chatLi.querySelector("p").textContent = message;
     return chatLi;
@@ -98,16 +101,18 @@ const generateResponse = async (incomingChatLi) => {
 
     try {
         const response = await fetch(API_URL, requestOptions);
+        
         if (response.ok) {
             const { botResponse } = await response.json();
             // Update the UI with the chatbot's response
             chatDisplay.innerHTML += `<div>User: ${userMessage}</div>`;
             chatDisplay.innerHTML += `<div>Bot: ${botResponse}</div>`;
         } else {
-            console.error('Error communicating with the server');
+            console.error(`Error communicating with the server. Status: ${response.status}, ${response.statusText}`);
         }
     } catch (error) {
-        console.error('Error:', error);
+        console.error('Error:', error.message);
+        console.error(error.stack);
     } finally {
         chatbox.scrollTo(0, chatbox.scrollHeight);
     }
@@ -130,6 +135,6 @@ const handleChat = async () => {
     await generateResponse(incomingChatLi);
 };
 
-sendChatBtn.addEventListener("click" , handleChat);
-chatbotCloseBtn.addEventListener("click" , () => document.body.classList.remove("show-chatbot"));
-chatbotToggler.addEventListener("click" , () => document.body.classList.toggle("show-chatbot"));
+sendChatBtn.addEventListener("click", handleChat);
+chatbotCloseBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));

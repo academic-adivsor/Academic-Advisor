@@ -103,12 +103,14 @@ var chatbox = document.querySelector(".chatbox");
 var chatbotToggler = document.querySelector(".chatbot-toggler");
 var chatbotCloseBtn = document.querySelector(".close-btn");
 var userMessage;
-var API_KEY = "sk-7Palc22EziLHISrxbAVQT38lbkFJY9WCOZiqdBhebjUy2XpH";
+var API_KEY = "sk-7Palc22EziLHISrxbAVQT38lbkFJY9WCOZiqdBhebjUy2XpH"; // Define chatDisplay
+
+var chatDisplay = document.getElementById("chatbot");
 
 var createChatLi = function createChatLi(message, className) {
   var chatLi = document.createElement("li");
   chatLi.classList.add("chat", className);
-  var chatContent = className === "outgoing" ? "<P></P>" : "<span class=\"material-symbols-outlined\">smart_toy</span><P></P>";
+  var chatContent = className === "outgoing" ? "<p></p>" : "<span class=\"material-symbols-outlined\">smart_toy</span><p></p>";
   chatLi.innerHTML = chatContent;
   chatLi.querySelector("p").textContent = message;
   return chatLi;
@@ -156,28 +158,29 @@ var generateResponse = function generateResponse(incomingChatLi) {
           break;
 
         case 15:
-          console.error('Error communicating with the server');
+          console.error("Error communicating with the server. Status: ".concat(response.status, ", ").concat(response.statusText));
 
         case 16:
-          _context.next = 21;
+          _context.next = 22;
           break;
 
         case 18:
           _context.prev = 18;
           _context.t0 = _context["catch"](2);
-          console.error('Error:', _context.t0);
+          console.error('Error:', _context.t0.message);
+          console.error(_context.t0.stack);
 
-        case 21:
-          _context.prev = 21;
+        case 22:
+          _context.prev = 22;
           chatbox.scrollTo(0, chatbox.scrollHeight);
-          return _context.finish(21);
+          return _context.finish(22);
 
-        case 24:
+        case 25:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 18, 21, 24]]);
+  }, null, null, [[2, 18, 22, 25]]);
 };
 
 var handleChat = function handleChat() {
