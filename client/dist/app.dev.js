@@ -1,6 +1,6 @@
 "use strict";
 
-var loginButton = document.getElementById('login-button');
+var loginButton = document.getElementById('loginButton');
 loginButton.addEventListener('click', function _callee() {
   var username, password, response, user;
   return regeneratorRuntime.async(function _callee$(_context) {
@@ -10,7 +10,7 @@ loginButton.addEventListener('click', function _callee() {
           username = document.getElementById('username').value;
           password = document.getElementById('password').value;
           _context.next = 4;
-          return regeneratorRuntime.awrap(fetch('http://localhost:2020/login', {
+          return regeneratorRuntime.awrap(fetch('http://localhost:2020/api/v1/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -40,8 +40,7 @@ loginButton.addEventListener('click', function _callee() {
             window.location.href = '/admin-dashboard';
           } else if (user.role === 'student') {
             window.location.href = '/student-dashboard';
-          } else if (user.role === 'doctor') {
-            window.location.href = '/doctors-dashboard'; // Handle other roles or unexpected scenarios
+          } else {// Handle other roles or unexpected scenarios
           }
 
           _context.next = 13;

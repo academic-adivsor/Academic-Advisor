@@ -1,99 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Academic Advisor</title>
-
-  <!--     - favicon
-  -->
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
-
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-
-  <!-- 
-    - google font link
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Poppins:wght@600;700&family=Rubik:wght@400;500&display=swap"
-    rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styleLogin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Login</title>
 </head>
-
-<body id="top">
-
-  <!-- 
-    - #HEADER
-  -->
-
-  <header class="header" data-header>
-    <div class="container">
-
-      <div class="overlay" data-overlay></div>
-
-      <a href="#" class="logo">
-        <img src="./assets/images/logo.svg" alt="Eduland logo">
-      </a>
-
-      <nav class="navbar" data-navbar>
-
-        <a href="#" class="logo">
-          <img src="./assets/images/logo.svg" alt="Eduland logo">
-        </a>
-
-        <a class="btn btn-secondary" href="./Login/LoginPage.html">Log in</a>
-
-      </nav>
-
-    </div>
-  </header>
-
-
-  <main>
-    <article>
-
-      <!-- 
-        - #HERO
-      -->
-
-      <section class="hero">
+<body>
+    <div class="box">
         <div class="container">
+            <div class="top">
+                <span>Have an account?</span>
+                <header>Login Now</header>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input" placeholder="UserName" >
+                <i class="bx bx-user"></i>
+            </div>
 
-          <figure class="hero-banner">
-            <img src="./assets/images/hero-banner.png" alt="A young lady sits, holding a pen and a notebook.">
-          </figure>
+            <div class="input-box">
+                <input type="password" class="input" placeholder="Password" >
+                <i class="bx bx-lock-alt"></i>
+            </div>
 
-          <div class="hero-content">
-
-            <h1 class="h1 hero-title">Start Your Future Education</h1>
-
-            <p class="section-text">
-              Credibly redefine distinctive total linkage vis-a-vis multifunction data. Phosphorescently impact
-              goal-oriented
-              strategic
-            </p>
-            
-          </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Login" >
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" name="" id="check">
+                    <label for="check">Remember Me</label>
+                </div>
+                <div class="two">
+                    <label for=""><a href="#">Forgot Password?</a></label>
+                </div>
+            </div>
         </div>
-      </section>
-
-  <!-- 
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
-
-  <!-- 
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+    </div>
 </body>
-
 </html>

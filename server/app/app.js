@@ -22,7 +22,10 @@ const {checkExamResults}=require("../controller/academics/examResults");
 const app = express();
 
 //Middlewares
-app.use(express.json()); //pass incoming json data
+app.use(express.json()); // Correct usage for parsing JSON payloads
+app.use(express.static(__dirname + '/public')); // Assuming your HTML file is in the 'public' folder
+
+// Routes
 
 //Routes
 app.use("/api/v1/admins", adminRouter);
