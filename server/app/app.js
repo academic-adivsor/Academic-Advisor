@@ -10,8 +10,7 @@ const programRouter = require("../routes/academics/program");
 const subjectRouter = require("../routes/academics/subjects");
 const yearGroupRouter = require("../routes/academics/yearGroups");
 const adminRouter = require("../routes/staff/adminRouter");
-const authController = require("../controller/authcontroller");
-const login = require("../routes/login");
+
 const teachersRouter = require("../routes/staff/teachers");
 const examRouter=require("../routes/academics/examRoutes");
 const studentRouter = require("../routes/staff/student");
@@ -19,7 +18,7 @@ const questionsRouter=require("../routes/academics/questionRoutes");
 const chatRouter = require("../routes/chat/chatRouter");
 const examResultRouter=require("../routes/academics/examRsultsRoute");
 const {checkExamResults}=require("../controller/academics/examResults");
-const loginRouter = require('../routes/login');
+
 
 const app = express();
 

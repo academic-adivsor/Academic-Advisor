@@ -20,10 +20,6 @@ var yearGroupRouter = require("../routes/academics/yearGroups");
 
 var adminRouter = require("../routes/staff/adminRouter");
 
-var authController = require("../controller/authcontroller");
-
-var login = require("../routes/login");
-
 var teachersRouter = require("../routes/staff/teachers");
 
 var examRouter = require("../routes/academics/examRoutes");
@@ -38,8 +34,6 @@ var examResultRouter = require("../routes/academics/examRsultsRoute");
 
 var _require2 = require("../controller/academics/examResults"),
     checkExamResults = _require2.checkExamResults;
-
-var loginRouter = require('../routes/login');
 
 var app = express(); //Middlewares
 
