@@ -164,4 +164,3 @@ chatbotCloseBtn.addEventListener("click", function () {
 chatbotToggler.addEventListener("click", function () {
   return document.body.classList.toggle("show-chatbot");
 });
-//# sourceMappingURL=app.dev.js.map

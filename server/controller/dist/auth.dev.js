@@ -1,74 +1,93 @@
 "use strict";
 
-var User = require("../model/user");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.register = void 0;
 
-var _require = require("../utlis/helpers"),
-    hashPassword = _require.hashPassword,
-    comparePassword = _require.comparePassword;
+var _user = _interopRequireDefault(require("../models/user"));
 
-var jwt = require("jsonwebtoken");
+var _auth = require("../utils/auth");
 
-exports.logincontroller = function _callee(req, res) {
-  var _req$body, email, password, user, match, token;
+var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
-  return regeneratorRuntime.async(function _callee$(_context) {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var register = function register(req, res) {
+  var _req$body, name, email, password, userExist, hashedPassword, user;
+
+  return regeneratorRuntime.async(function register$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
           // console.log(req.body);
-          _req$body = req.body, email = _req$body.email, password = _req$body.password; // check if our db has user with that email
+          _req$body = req.body, name = _req$body.name, email = _req$body.email, password = _req$body.password; // validation
 
-          _context.next = 4;
-          return regeneratorRuntime.awrap(User.findOne({
-            email: email
-          }).exec());
-
-        case 4:
-          user = _context.sent;
-
-          if (user) {
-            _context.next = 7;
+          if (name) {
+            _context.next = 4;
             break;
           }
 
-          return _context.abrupt("return", res.status(400).send("No user found"));
+          return _context.abrupt("return", res.status(400).send("Name is required"));
 
-        case 7:
-          _context.next = 9;
-          return regeneratorRuntime.awrap(comparePassword(password, user.password));
+        case 4:
+          if (!(!password || password.length < 6)) {
+            _context.next = 6;
+            break;
+          }
 
-        case 9:
-          match = _context.sent;
-          // create signed jwt
-          token = jwt.sign({
-            _id: user._id
-          }, process.env.JWT_SECRET, {
-            expiresIn: "7d"
-          }); // return user and token to client, exclude hashed password
+          return _context.abrupt("return", res.status(400).send("Password is required and should be min 6 characters long"));
 
-          user.password = undefined; // send token in cookie
+        case 6:
+          _context.next = 8;
+          return regeneratorRuntime.awrap(_user["default"].findOne({
+            email: email
+          }).exec());
 
-          res.cookie("token", token, {
-            httpOnly: true // secure: true, // only works on https
+        case 8:
+          userExist = _context.sent;
 
-          }); // send user as json response
+          if (!userExist) {
+            _context.next = 11;
+            break;
+          }
 
-          res.json(user);
-          _context.next = 20;
-          break;
+          return _context.abrupt("return", res.status(400).send("Email is taken"));
 
-        case 16:
-          _context.prev = 16;
+        case 11:
+          _context.next = 13;
+          return regeneratorRuntime.awrap((0, _auth.hashPassword)(password));
+
+        case 13:
+          hashedPassword = _context.sent;
+          // register
+          user = new _user["default"]({
+            name: name,
+            email: email,
+            password: hashedPassword
+          });
+          _context.next = 17;
+          return regeneratorRuntime.awrap(user.save());
+
+        case 17:
+          return _context.abrupt("return", res.json({
+            ok: true
+          }));
+
+        case 20:
+          _context.prev = 20;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
           return _context.abrupt("return", res.status(400).send("Error. Try again."));
 
-        case 20:
+        case 24:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 16]]);
+  }, null, null, [[0, 20]]);
 };
+
+exports.register = register;
 //# sourceMappingURL=auth.dev.js.map

@@ -10,7 +10,7 @@ const programRouter = require("../routes/academics/program");
 const subjectRouter = require("../routes/academics/subjects");
 const yearGroupRouter = require("../routes/academics/yearGroups");
 const adminRouter = require("../routes/staff/adminRouter");
-
+const authController = require("../controller/authcontroller");
 const teachersRouter = require("../routes/staff/teachers");
 const examRouter=require("../routes/academics/examRoutes");
 const studentRouter = require("../routes/staff/student");
@@ -41,6 +41,8 @@ app.use("/api/v1/questions", questionsRouter);
 app.use("/api/v1/students", studentRouter);
 app.use("/api/v1/exam-results", examResultRouter);
 app.use("/api/v1/chat", chatRouter);
+app.post('/login', authController.login);
+
 
 //Error middlewares
 app.use(notFoundErr);
