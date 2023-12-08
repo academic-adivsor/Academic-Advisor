@@ -2,16 +2,24 @@
 
 var bcrypt = require('bcrypt');
 
+var mongoose = require('mongoose');
+
+var Admin = require("../model/staff/Admin");
+
+var Student = require('../model/academic/Student');
+
+var Teacher = require('../model/staff/Teacher');
+
 var login = function login(req, res) {
-  var _req$body, username, password, user, passwordMatch, token;
+  var _req$body, email, password, user, passwordMatch, token;
 
   return regeneratorRuntime.async(function login$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _req$body = req.body, username = _req$body.username, password = _req$body.password; // Example: Check if username exists in the database
+          _req$body = req.body, email = _req$body.email, password = _req$body.password; // Example: Check if username exists in the database
 
-          user = getUserByUsername(username);
+          user = getUserByUsername(email);
 
           if (user) {
             _context.next = 4;

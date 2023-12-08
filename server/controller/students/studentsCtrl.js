@@ -1,7 +1,7 @@
 const AysncHandler = require("express-async-handler");
 const Exam = require("../../model/Academic/Exam");
 const ExamResult = require("../../model/Academic/ExamResults");
-const Student = require("../../model/Academic/Student");
+const Student = require("../../model/academic/Student");
 const Admin = require("../../model/staff/Admin");
 const generateToken = require("../../utlis/generateToken");
 const { hashPassword, isPassMatched } = require("../../utlis/helpers");

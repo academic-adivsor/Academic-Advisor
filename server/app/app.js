@@ -11,6 +11,7 @@ const subjectRouter = require("../routes/academics/subjects");
 const yearGroupRouter = require("../routes/academics/yearGroups");
 const adminRouter = require("../routes/staff/adminRouter");
 const authController = require("../controller/authcontroller");
+const login = require("../routes/login");
 const teachersRouter = require("../routes/staff/teachers");
 const examRouter=require("../routes/academics/examRoutes");
 const studentRouter = require("../routes/staff/student");
@@ -18,6 +19,7 @@ const questionsRouter=require("../routes/academics/questionRoutes");
 const chatRouter = require("../routes/chat/chatRouter");
 const examResultRouter=require("../routes/academics/examRsultsRoute");
 const {checkExamResults}=require("../controller/academics/examResults");
+const loginRouter = require('../routes/login');
 
 const app = express();
 
@@ -41,7 +43,7 @@ app.use("/api/v1/questions", questionsRouter);
 app.use("/api/v1/students", studentRouter);
 app.use("/api/v1/exam-results", examResultRouter);
 app.use("/api/v1/chat", chatRouter);
-app.post('/login', authController.login);
+
 
 
 //Error middlewares

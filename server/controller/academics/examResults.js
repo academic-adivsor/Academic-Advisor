@@ -1,6 +1,6 @@
 const AysncHandler = require("express-async-handler");
 const ExamResult = require("../../model/Academic/ExamResults");
-const Student = require("../../model/Academic/Student");
+const Student = require("../../model/academic/Student");
 
 //@desc  Exam results checking
 //@route POST /api/v1/exam-results/:id/checking

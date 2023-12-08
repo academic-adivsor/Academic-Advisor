@@ -1,4 +1,4 @@
-const Student = require("../model/Academic/Student");
+const Student = require("../model/academic/Student");
 const Teacher = require("../model/staff/Teacher");
 
 const isStdudent = async (req, res, next) => {

@@ -1,10 +1,15 @@
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
+const Admin = require("../model/staff/Admin");
+const Student = require('../model/academic/Student');
+const Teacher = require('../model/staff/Teacher');
+
 
 const login = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     // Example: Check if username exists in the database
-    const user = getUserByUsername(username);
+    const user = getUserByUsername(email);
 
     if (!user) {
         return res.status(401).json({ message: 'Invalid credentials' });
