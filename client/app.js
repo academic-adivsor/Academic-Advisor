@@ -1,9 +1,9 @@
-document.getElementById('loginBtn').addEventListener('click', async () => {
+document.getElementById('login').addEventListener('click', async () => {
     const username = document.getElementById('usernameInput').value;
     const password = document.getElementById('passwordInput').value;
 
     try {
-        const response = await fetch('your-login-endpoint', {
+        const response = await fetch('http://localhost:2020/api/v1/admins/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

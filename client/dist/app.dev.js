@@ -1,6 +1,6 @@
 "use strict";
 
-document.getElementById('loginBtn').addEventListener('click', function _callee() {
+document.getElementById('login').addEventListener('click', function _callee() {
   var username, password, response;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -10,7 +10,7 @@ document.getElementById('loginBtn').addEventListener('click', function _callee()
           password = document.getElementById('passwordInput').value;
           _context.prev = 2;
           _context.next = 5;
-          return regeneratorRuntime.awrap(fetch('your-login-endpoint', {
+          return regeneratorRuntime.awrap(fetch('http://localhost:2020/api/v1/admins/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
