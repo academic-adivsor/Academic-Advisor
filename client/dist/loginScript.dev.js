@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             password = document.getElementById('passwordInput').value;
             _context.prev = 2;
             _context.next = 5;
-            return regeneratorRuntime.awrap(fetch('http://localhost:2020/admins/login', {
+            return regeneratorRuntime.awrap(fetch('http://localhost:2020/api/v1/admins/login', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -116,4 +116,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }, null, null, [[2, 33]]);
   });
 });
-//# sourceMappingURL=app.dev.js.map
+//# sourceMappingURL=loginScript.dev.js.map
