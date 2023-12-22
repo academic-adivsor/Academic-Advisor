@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const password = document.getElementById('passwordInput').value;
 
         try {
-            const adminResponse = await fetch('http://localhost:2020/api/v1/admins/login', {
+            const adminResponse = await fetch('api/v1/admins/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
