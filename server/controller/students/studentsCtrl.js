@@ -1,7 +1,7 @@
 const AysncHandler = require("express-async-handler");
 const Exam = require("../../model/Academic/Exam");
 const ExamResult = require("../../model/Academic/ExamResults");
-const Student = require("../../model/academic/Student");
+const Student = require("../../model/Academic/Student");
 const Admin = require("../../model/staff/Admin");
 const generateToken = require("../../utlis/generateToken");
 const { hashPassword, isPassMatched } = require("../../utlis/helpers");
@@ -386,7 +386,7 @@ exports.writeExam = AysncHandler(async (req, res) => {
     studentFound.classLevels.push("Level 400");
     studentFound.currentClassLevel = "Level 400";
     await studentFound.save();
-  }
+  } 
 
   //promote student to graduate
   if (
