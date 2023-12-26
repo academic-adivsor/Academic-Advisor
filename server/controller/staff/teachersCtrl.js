@@ -60,7 +60,9 @@ exports.loginTeacher = AysncHandler(async (req, res) => {
 
 exports.getAllTeachersAdmin = AysncHandler(async (req, res) => {
   const teachers = await Teacher.find();
+  const total = await Teacher.countDocuments();
   res.status(200).json({
+    total,
     status: "success",
     message: "Teachers fetched successfully",
     data: teachers,

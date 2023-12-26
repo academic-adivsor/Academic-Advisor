@@ -94,6 +94,5 @@ const examSchema = new Schema(
   { timestamps: true }
 );
 
-const Exam = mongoose.model("Exam", examSchema);
-
+const Exam = mongoose.models.Exam || mongoose.model("Exam", examSchema);
 module.exports = Exam;
