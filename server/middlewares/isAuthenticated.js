@@ -1,4 +1,4 @@
-const verifyToken = require("../utils/verifyToken");
+const verifyToken = require("../utlis/verifyToken");
 
 const isAuthenticated = model => {
   return async (req, res, next) => {

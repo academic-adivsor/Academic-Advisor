@@ -19,10 +19,19 @@ var isTeacher = require("../../middlewares/isTeacher");
 
 var isTeacherLogin = require("../../middlewares/isTeacherLogin");
 
+var Teacher = require("../../model/staff/Teacher");
+
+var advancedResults = require("../../middlewares/advancedResults");
+
 var teachersRouter = express.Router();
 teachersRouter.post("/admin/register", isLogin, isAdmin, adminRegisterTeacher);
 teachersRouter.post("/login", loginTeacher);
-teachersRouter.get("/admin", isLogin, isAdmin, getAllTeachersAdmin);
+teachersRouter.get("/admin", isLogin, isAdmin, advancedResults(Teacher, {
+  path: "examsCreated",
+  populate: {
+    path: "questions"
+  }
+}), getAllTeachersAdmin);
 teachersRouter.get("/profile", isTeacherLogin, isTeacher, getTeacherProfile);
 teachersRouter.get("/:teacherID/admin", isLogin, isAdmin, getTeacherByAdmin);
 teachersRouter.put("/:teacherID/update", isTeacherLogin, isTeacher, teacherUpdateProfile);

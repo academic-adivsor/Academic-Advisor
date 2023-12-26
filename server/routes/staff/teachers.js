@@ -12,6 +12,7 @@ const isAdmin = require("../../middlewares/isAdmin");
 const isLogin = require("../../middlewares/isLogin");
 const isTeacher = require("../../middlewares/isTeacher");
 const isTeacherLogin = require("../../middlewares/isTeacherLogin");
+const Teacher = require("../../model/staff/Teacher");
 const advancedResults = require("../../middlewares/advancedResults");
 const teachersRouter = express.Router();
 
