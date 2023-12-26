@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             password = document.getElementById('passwordInput').value;
             _context.prev = 2;
             _context.next = 5;
-            return regeneratorRuntime.awrap(fetch('api/v1/admins/login', {
+            return regeneratorRuntime.awrap(fetch('http://localhost:2020/api/v1/admins/login', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
