@@ -17,7 +17,7 @@ var corsOptions = {
   credentials: true,
   optionsSuccessStatus: 204
 };
-var PORT = process.env.PORT || 2020; //server
+var PORT = process.env.PORT || 2020; //server // Huseein 
 
 var server = http.createServer(app);
 server.listen(PORT, console.log("Server is running on port ".concat(PORT)));
