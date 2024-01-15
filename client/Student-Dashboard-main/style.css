@@ -199,6 +199,24 @@ aside .profile .about{
     margin-top: 1rem;
 }
 
+/* ================= the Last Editing in CSS =============== */
+.student_btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #ff7782;
+    color: white;
+    border-radius: 1rem;
+    transition: 0.9s ease;
+    font-size: 1rem;
+    font-weight: 20px;
+}
+
+.student_btn:hover {
+    background-color: transparent;
+    color: #000;
+}
+/* ================= end of Editing ================ */
+
 /* Home Section  */
 main{
     position: relative;
@@ -632,4 +650,17 @@ main .timetable.active .closeBtn{
     .chatbot .header span{
         display: block;
     }
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
 }

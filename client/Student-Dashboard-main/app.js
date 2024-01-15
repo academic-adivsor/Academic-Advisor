@@ -104,7 +104,6 @@ const generateResponse = async (incomingChatLi) => {
         
         if (response.ok) {
             const { botResponse } = await response.json();
-            console.log("Bot Response:", botResponse);
             // Update the UI with the chatbot's response
             chatDisplay.innerHTML += `<div>User: ${userMessage}</div>`;
             chatDisplay.innerHTML += `<div>Bot: ${botResponse}</div>`;

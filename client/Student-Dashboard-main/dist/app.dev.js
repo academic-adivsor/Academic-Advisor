@@ -141,7 +141,7 @@ var generateResponse = function generateResponse(incomingChatLi) {
           response = _context.sent;
 
           if (!response.ok) {
-            _context.next = 16;
+            _context.next = 15;
             break;
           }
 
@@ -151,37 +151,36 @@ var generateResponse = function generateResponse(incomingChatLi) {
         case 9:
           _ref = _context.sent;
           botResponse = _ref.botResponse;
-          console.log("Bot Response:", botResponse); // Update the UI with the chatbot's response
-
+          // Update the UI with the chatbot's response
           chatDisplay.innerHTML += "<div>User: ".concat(userMessage, "</div>");
           chatDisplay.innerHTML += "<div>Bot: ".concat(botResponse, "</div>");
-          _context.next = 17;
+          _context.next = 16;
           break;
 
-        case 16:
+        case 15:
           console.error("Error communicating with the server. Status: ".concat(response.status, ", ").concat(response.statusText));
 
-        case 17:
-          _context.next = 23;
+        case 16:
+          _context.next = 22;
           break;
 
-        case 19:
-          _context.prev = 19;
+        case 18:
+          _context.prev = 18;
           _context.t0 = _context["catch"](2);
           console.error('Error:', _context.t0.message);
           console.error(_context.t0.stack);
 
-        case 23:
-          _context.prev = 23;
+        case 22:
+          _context.prev = 22;
           chatbox.scrollTo(0, chatbox.scrollHeight);
-          return _context.finish(23);
+          return _context.finish(22);
 
-        case 26:
+        case 25:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[2, 19, 23, 26]]);
+  }, null, null, [[2, 18, 22, 25]]);
 };
 
 var handleChat = function handleChat() {
@@ -226,4 +225,3 @@ chatbotCloseBtn.addEventListener("click", function () {
 chatbotToggler.addEventListener("click", function () {
   return document.body.classList.toggle("show-chatbot");
 });
-//# sourceMappingURL=app.dev.js.map

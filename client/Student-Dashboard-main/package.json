@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server --cors",
-    "proxy": "http://localhost:2020",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mohamed",
