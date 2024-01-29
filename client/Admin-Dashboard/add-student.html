@@ -155,7 +155,7 @@
                                         <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                         <span class="ml-2">Inbox </span>
                                     </a>
-                                    <a href="page-login.html" class="dropdown-item ai-icon">
+                                    <a href="../index.html" class="dropdown-item ai-icon">
                                         <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
                                         <span class="ml-2">Logout </span>
                                     </a>
@@ -199,9 +199,7 @@
                         <ul aria-expanded="false">
                             <li><a href="all-professors.html">All Professor</a></li>
                             <li><a href="add-professor.html">Add Professor</a></li>
-                            <li><a href="edit-professor.html">Edit Professor</a></li>
-                            <li><a href="professor-profile.html">Professor Profile</a></li>
-                        </ul>
+                         </ul>
                     </li>
 					<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
 							<i class="la la-users"></i>
@@ -210,7 +208,6 @@
                         <ul aria-expanded="false">
                             <li><a href="all-students.html">All Students</a></li>
                             <li><a href="add-student.html">Add Students</a></li>
-                            <li><a href="edit-student.html">Edit Students</a></li>
                             <li><a href="about-student.html">About Students</a></li>
                         </ul>
                     </li>
@@ -221,20 +218,9 @@
                         <ul aria-expanded="false">
                             <li><a href="all-courses.html">All Courses</a></li>
                             <li><a href="add-courses.html">Add Courses</a></li>
-                            <li><a href="edit-courses.html">Edit Courses</a></li>
-                            <li><a href="about-courses.html">About Courses</a></li>
-                        </ul>
+                         </ul>
                     </li>
-					<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-							<i class="la la-book"></i>
-							<span class="nav-text">Library</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="all-library.html">All Library</a></li>
-                            <li><a href="add-library.html">Add Library</a></li>
-                            <li><a href="edit-library.html">Edit Library</a></li>
-                        </ul>
-                    </li>
+ 
 					<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
 							<i class="la la-building"></i>
 							<span class="nav-text">Departments</span>
@@ -245,28 +231,8 @@
                             <li><a href="edit-departments.html">Edit Departments</a></li>
                         </ul>
                     </li>
-					<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-							<i class="la la-users"></i>
-							<span class="nav-text">Staff</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="all-staff.html">All Staff</a></li>
-                            <li><a href="add-staff.html">Add Staff</a></li>
-                            <li><a href="edit-staff.html">Edit Staff</a></li>
-                            <li><a href="staff-profile.html">Staff Profile</a></li>
-                        </ul>
-                    </li>
-					<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-							<i class="la la-gift"></i>
-							<span class="nav-text">Holiday</span>
-						</a>
-                        <ul aria-expanded="false">
-                            <li><a href="all-holiday.html">All Holiday</a></li>
-                            <li><a href="add-holiday.html">Add Holiday</a></li>
-                            <li><a href="edit-holiday.html">Edit Holiday</a></li>
-                            <li><a href="holiday-calendar.html">Holiday Calendar</a></li>
-                        </ul>
-                    </li>
+ 
+ 
 					<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
 							<i class="la la-dollar"></i>
 							<span class="nav-text">Fees</span>
@@ -390,7 +356,7 @@
 						</a>
                         <ul aria-expanded="false">
                             <li><a href="page-register.html">Register</a></li>
-                            <li><a href="page-login.html">Login</a></li>
+                            <li><a href="../index.html">Login</a></li>
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
                                 <ul aria-expanded="false">
                                     <li><a href="page-error-400.html">Error 400</a></li>
@@ -435,125 +401,121 @@
                 </div>
 				
 				<div class="row">
-					<div class="col-xl-12 col-xxl-12 col-sm-12">
+                    <div class="col-xl-12 col-xxl-12 col-sm-12">
                         <div class="card">
                             <div class="card-header">
-								<h5 class="card-title">Basic Info</h5>
-							</div>
-							<div class="card-body">
-                                <form action="#" method="post">
-									<div class="row">
+                                <h5 class="card-title">Basic Info</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="studentForm" action="#" method="post">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">First Name</label>
+                                                <input type="text" class="form-control" name="firstName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Last Name</label>
+                                                <input type="text" class="form-control" name="lastName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Email</label>
+                                                <input type="text" class="form-control" name="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Password</label>
+                                                <input type="text" class="form-control" name="password" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Registration Date</label>
+                                                <input name="datepicker" class="datepicker-default form-control" id="datepicker">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Roll No.</label>
+                                                <input type="text" class="form-control" name="rollNo">
+                                            </div>
+                                        </div>
 										<div class="col-lg-6 col-md-6 col-sm-12">
 											<div class="form-group">
-												<label class="form-label">First Name</label>
-												<input type="text" class="form-control">
-											</div>
+												<label class="form-label">Department</label>
+                                                <select class="form-control" id="departmentDropdown" required>    
+                                              </select>
+                                                </div>
 										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Last Name</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Email</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Registration Date</label>
-												<input name="datepicker" class="datepicker-default form-control" id="datepicker">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Roll No.</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Class</label>
-												<select class="form-control">
-													<option value="Class">Class</option>
-													<option value="html">HTML</option>
-													<option value="css">CSS</option>
-													<option value="javascript">JavaScript</option>
-													<option value="angular">Angular</option>
-													<option value="angular">React</option>
-													<option value="vuejs">Vue.js</option>
-													<option value="ruby">Ruby</option>
-													<option value="php">PHP</option>
-													<option value="asp">ASP.NET</option>
-													<option value="python">Python</option>
-													<option value="mysql">MySQL</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Gender</label>
-												<select class="form-control">
-													<option value="Gender">Gender</option>
-													<option value="Male">Male</option>
-													<option value="Female">Female</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Mobile Number</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Parents Name</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Parents Mobile Number</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Date of Birth</label>
-												<input name="datepicker" class="datepicker-default form-control" id="datepicker1">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Blood Group</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-12 col-md-12 col-sm-12">
-											<div class="form-group">
-												<label class="form-label">Address</label>
-												<textarea class="form-control" rows="5"></textarea>
-											</div>
-										</div>
-										<div class="col-lg-12 col-md-12 col-sm-12">
-											<div class="form-group fallback w-100">
-												<input type="file" class="dropify" data-default-file="">
-											</div>
-										</div>
-										<div class="col-lg-12 col-md-12 col-sm-12">
-											<button type="submit" class="btn btn-primary">Submit</button>
-											<button type="submit" class="btn btn-light">Cencel</button>
-										</div>
-									</div>
-								</form>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Gender</label>
+                                                <select class="form-control" name="gender">
+                                                    <option value="Gender">Gender</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Mobile Number</label>
+                                                <input type="text" class="form-control" name="mobileNumber">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Parents Name</label>
+                                                <input type="text" class="form-control" name="parentsName">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Parents Mobile Number</label>
+                                                <input type="text" class="form-control" name="parentsMobileNumber">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Date of Birth</label>
+                                                <input name="datepicker" class="datepicker-default form-control" id="datepicker1">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Blood Group</label>
+                                                <input type="text" class="form-control" name="bloodGroup">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Address</label>
+                                                <textarea class="form-control" rows="5" name="address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group fallback w-100">
+                                                <input type="file" class="dropify" data-default-file="" name="fileInput">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
+                                            <button type="button" class="btn btn-light" id="cancelBtn">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
+                    
 				</div>
-                
+                <div id="message" class="alert" role="alert"></div>
+
             </div>
         </div>
         <!--**********************************
@@ -591,7 +553,7 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-<script src="vendor/global/global.min.js"></script>
+    <script src="vendor/global/global.min.js"></script>
 	<script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="js/custom.min.js"></script>
 	<script src="js/dlabnav-init.js"></script>
@@ -608,6 +570,10 @@
 	
 	<!-- Pickdate -->
     <script src="js/plugins-init/pickadate-init.js"></script>
+
+    <!-- Demo scripts -->
+    <script src="js/dashboard/dashboard.js"></script>
+
 	
 </body>
 </html>

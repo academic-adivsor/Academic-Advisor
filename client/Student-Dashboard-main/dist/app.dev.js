@@ -116,72 +116,47 @@ var createChatLi = function createChatLi(message, className) {
   return chatLi;
 };
 
-var generateResponse = function generateResponse(incomingChatLi) {
+var generateResponse = async function generateResponse(incomingChatLi) {
   var API_URL, requestOptions, response, _ref, botResponse;
 
-  return regeneratorRuntime.async(function generateResponse$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          API_URL = 'http://localhost:2020/api/v1/chat';
-          requestOptions = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              message: userMessage
-            })
-          };
-          _context.prev = 2;
-          _context.next = 5;
-          return regeneratorRuntime.awrap(fetch(API_URL, requestOptions));
+  try {
+    API_URL = 'http://localhost:2020/api/v1/chat';
+    requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: userMessage
+      })
+    };
+    response = await fetch(API_URL, requestOptions);
+    const responseBodyText = await response.text();
+    console.log(responseBodyText)
 
-        case 5:
-          response = _context.sent;
+    // Initialize botResponse to an empty string by default
+    botResponse = '';
+    if (response.ok) {
+      // Parse the response and extract botResponse
+      console.log(response.json())
 
-          if (!response.ok) {
-            _context.next = 15;
-            break;
-          }
+      _ref = await response.json();
+      botResponse = _ref.botResponse;
 
-          _context.next = 9;
-          return regeneratorRuntime.awrap(response.json());
-
-        case 9:
-          _ref = _context.sent;
-          botResponse = _ref.botResponse;
-          // Update the UI with the chatbot's response
-          chatDisplay.innerHTML += "<div>User: ".concat(userMessage, "</div>");
-          chatDisplay.innerHTML += "<div>Bot: ".concat(botResponse, "</div>");
-          _context.next = 16;
-          break;
-
-        case 15:
-          console.error("Error communicating with the server. Status: ".concat(response.status, ", ").concat(response.statusText));
-
-        case 16:
-          _context.next = 22;
-          break;
-
-        case 18:
-          _context.prev = 18;
-          _context.t0 = _context["catch"](2);
-          console.error('Error:', _context.t0.message);
-          console.error(_context.t0.stack);
-
-        case 22:
-          _context.prev = 22;
-          chatbox.scrollTo(0, chatbox.scrollHeight);
-          return _context.finish(22);
-
-        case 25:
-        case "end":
-          return _context.stop();
-      }
+      // Update the UI with the chatbot's response
+      chatDisplay.innerHTML += "<div>User: ".concat(userMessage, "</div>");
+      chatDisplay.innerHTML += "<div>Bot: ".concat(botResponse, "</div>");
+    } else {
+      console.error("Error communicating with the server. Status: ".concat(response.status, ", ").concat(response.statusText));
     }
-  }, null, null, [[2, 18, 22, 25]]);
+  } catch (error) {
+    console.error('Error:', error.message);
+    console.error(error.stack);
+  } finally {
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+  }
 };
+
 
 var handleChat = function handleChat() {
   var incomingChatLi;

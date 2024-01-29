@@ -85,3 +85,22 @@ label a{
     text-decoration: none;
     color: #fff;
 }
+
+
+#messageContainer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    color: white;
+    display: none;
+    border-radius: 5px;
+}
+
+.success-message {
+    background-color: green;
+}
+
+.error-message {
+    background-color: red;
+}

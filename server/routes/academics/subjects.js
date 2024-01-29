@@ -5,6 +5,7 @@ const {
   getProgram,
   getSubjects,
   updatSubject,
+  getBysubjectId,
 } = require("../../controller/academics/subjects");
 
 const isAdmin = require("../../middlewares/isAdmin");
@@ -19,5 +20,7 @@ subjectRouter.get("/", isLogin, isAdmin, getSubjects);
 subjectRouter.get("/:id", isLogin, isAdmin, getProgram);
 subjectRouter.put("/:id", isLogin, isAdmin, updatSubject);
 subjectRouter.delete("/:id", isLogin, isAdmin, deleteSubject);
+
+subjectRouter.get("/getBysubjectId/:id", isLogin, getBysubjectId);
 
 module.exports = subjectRouter;

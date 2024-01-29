@@ -18,7 +18,7 @@ chatRouter.post("/", async (req, res) => {
     if (!userMessage) {
       return res.status(400).json({ message: 'Bad Request: Missing message' });
     }
-
+    console.log(userMessage)
     // Generate a session ID
     const sessionId = generateSessionId();
 

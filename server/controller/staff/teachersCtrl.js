@@ -8,7 +8,7 @@ const { hashPassword, isPassMatched } = require("../../utlis/helpers");
 //@acess  Private
 
 exports.adminRegisterTeacher = AysncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password,program } = req.body;
   //check if teacher already exists
   const teacher = await Teacher.findOne({ email });
   if (teacher) {
@@ -21,6 +21,7 @@ exports.adminRegisterTeacher = AysncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
+    program
   });
   //send teacher data
   res.status(201).json({
@@ -160,6 +161,54 @@ exports.teacherUpdateProfile = AysncHandler(async (req, res) => {
   }
 });
 
+
+
+//@desc    Student updating profile
+//@route    UPDATE /api/v1/students/update
+//@access   Private Student only
+
+exports.teacherUpdatePassword = AysncHandler(async (req, res) => {
+  const { password } = req.body;
+  //if email is taken
+  //hash password
+  //check if user is updating password
+
+  if (password) {
+    //update
+    const teacher = await Teacher.findByIdAndUpdate(
+      req.userAuth._id,
+      {
+        password: await hashPassword(password),
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: teacher,
+      message: "Teacher updated successfully",
+    });
+  } else {
+    //update
+    const teacher = await Teacher.findByIdAndUpdate(
+      req.userAuth._id,
+      {
+        email,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: teacher,
+      message: "Teacher updated successfully",
+    });
+  }
+});
 //@desc     Admin updating Teacher profile
 //@route    UPDATE /api/v1/teachers/:teacherID/admin
 //@access   Private Admin only
@@ -217,5 +266,22 @@ exports.adminUpdateTeacher = AysncHandler(async (req, res) => {
       data: teacherFound,
       message: "Teacher updated successfully",
     });
+  }
+});
+
+
+
+exports.deleteTeacher = AysncHandler(async (req, res) => {
+  try {
+    // Find and delete the student
+    await Teacher.findByIdAndDelete(req.params.teacherID);
+
+    res.status(201).json({
+      status: 'success',
+      message: 'teacher deleted successfully',
+    });
+  } catch (error) {
+    console.error('Error deleting teacher:', error);
+    res.status(500).json({ status: 'error', message: 'Internal Server Error' });
   }
 });

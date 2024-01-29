@@ -1,3 +1,112 @@
+const token = localStorage.getItem('authToken'); // Replace 'your_token_key' with the actual key used to store the token
+
+// Check if token exists in Local Storage
+function isTokenExists() {
+    const authToken = localStorage.getItem('authToken');
+    return authToken !== null && authToken !== undefined;
+}
+
+// Redirect to the login page
+function redirectToLogin() {
+    window.location.href = 'http://localhost:8080/index.html'; // Change this URL to your login page
+}
+// Example usage:
+// Assume this code is part of a script that runs when your application loads
+if (!isTokenExists()) {
+    // If the token doesn't exist, redirect to the login page
+    redirectToLogin();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	// Get the token from localStorage
+  
+	fetch('http://localhost:2020/api/v1/students/admin', {
+	  headers: {
+		'Authorization': `Bearer ${token}`, // Include the token in the "Authorization" header
+		'Content-Type': 'application/json'
+	  },
+	})
+	  .then(response => response.json())
+	  .then(data => {
+		const studentTableBody = document.getElementById('studentTableBody');
+  
+		// Display only the last 5 students
+		const lastFiveStudents = data.data.slice(-5);
+  
+		lastFiveStudents.forEach((student, index) => {
+		  const row = document.createElement('tr');
+		  row.innerHTML = `
+			<td>${index + 1}</td>
+			<td>${student.name}</td>
+			<td>${student.email}</td>
+			<td>${new Date(student.dateAdmitted).toLocaleDateString()}</td>
+			<td>
+			  <button class="btn btn-sm btn-primary" onclick="editStudent('${student._id}')">Edit</button>
+			  <button class="btn btn-sm btn-danger" onclick="deleteStudent('${student._id}')">Delete</button>
+			</td>
+		  `;
+  
+		  studentTableBody.appendChild(row);
+		});
+	  })
+	  .catch(error => console.error('Error fetching students:', error));
+  });
+  
+  function editStudent(studentId) {
+	// Implement your logic for editing a student here
+	console.log(`Editing student with ID: ${studentId}`);
+  }
+  function deleteStudent(studentId) {
+	// Implement your logic for deleting a student here
+	if (confirm('Are you sure you want to delete this student?')) {
+	  console.log(`Deleting student with ID: ${studentId}`);
+	  // Make a fetch request to delete the student using the studentId
+	  // ...
+	}
+  }
+  
+// Fetch data from the API
+fetch('http://localhost:2020/api/v1/students/admin', {
+	  headers: {
+		'Authorization': `Bearer ${token}`, // Include the token in the "Authorization" header
+		'Content-Type': 'application/json'
+	  },
+	})
+  .then(response => response.json())
+  .then(data => {
+    // Assuming data is an array of student objects
+
+    // Total Students
+	document.getElementById('totalStudentsCount').innerText = data.data.length || 'N/A';
+
+    // New Students (Assuming you want to show the count of students added recently)
+    const newStudentsCount = data.data.filter(student => {
+      const admissionDate = new Date(student.dateAdmitted);
+      const currentDate = new Date();
+      // Assuming "recently" means added within the last 30 days
+      return (currentDate - admissionDate) / (1000 * 60 * 60 * 24) <= 30;
+    }).length;
+	document.getElementById('newStudentsCount').innerText = newStudentsCount || 'N/A';
+  })
+  .catch(error => console.error('Error fetching data:', error));
+
+  fetch('http://localhost:2020/api/v1/subjects', {
+	headers: {
+	  'Authorization': `Bearer ${token}`, // Include the token in the "Authorization" header
+	  'Content-Type': 'application/json'
+	},
+  })
+.then(response => response.json())
+.then(data => {
+  // Assuming data is an array of student objects
+
+  // Total courses
+  document.getElementById('totalCourseCount').textContent = data.data.length;
+
+})
+.catch(error => console.error('Error fetching data:', error));
+
+
 (function($) {
     /* "use strict" */
 

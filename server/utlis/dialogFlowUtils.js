@@ -15,6 +15,7 @@ const processUserMessage = async (userMessage, sessionId, serviceAccount) => {
   
   try {
     const responses = await sessionClient.detectIntent({ session, queryInput });
+    console.log('response:', responses[0].queryResult.fulfillmentText)
     return responses[0].queryResult.fulfillmentText;
   } catch (error) {
     console.error('Error:', error);

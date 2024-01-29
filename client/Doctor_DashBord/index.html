@@ -33,7 +33,7 @@
                 <span class="material-icons-sharp">password</span>
                 <h3>Change Password</h3>
             </a>
-            <a href="#">
+            <a href="../index.html">
                 <span class="material-icons-sharp" onclick="">logout</span>
                 <h3>Logout</h3>
             </a>
@@ -55,70 +55,31 @@
                         <img src="./images/profile-1.jpg" alt="">
                     </div>
                     <div class="info">
-                        <p>Hey, <b>Alex</b> </p>
-                        <small class="text-muted">12102030</small>
+                        <p>Hey, <b id="studentName"></b> </p>
+                        <small class="text-muted" id="studentID"></small>
                     </div>
                 </div>
                 <div class="about">
                     <h5>Course</h5>
-                    <p>BTech. Computer Science & Engineering</p>
+                    <p id="course"></p>
                     <h5>DOB</h5>
-                    <p>29-Feb-2023</p>
+                    <p id="dob"></p>
                     <h5>Contact</h5>
-                    <p>1234567890</p>
+                    <p id="contact"></p>
                     <h5>Email</h5>
-                    <p>unknown@gmail.com</p>
+                    <p id="email"></p>
                     <h5>Address</h5>
-                    <p>Ghost town Road, New York, America</p>
+                    <p id="address"></p>
                 </div>
             </div>
         </aside>
 
         <main>
             <h1>Courses</h1>
-            <div class="subjects">
-                <div class="eg">
-                    <span class="material-icons-sharp">architecture</span>
-                    <h3>Engineering Graphics</h3>
-                    <h2>12/14</h2>
-                    <div class="progress">
-                        <svg><circle cx="38" cy="38" r="36"></circle></svg>
-                        <div class="number"><p>86%</p></div>
-                    </div>
-                    <small class="text-muted">Last 24 Hours</small>
-                </div>
-                <div class="mth">
-                    <span class="material-icons-sharp">functions</span>
-                    <h3>Mathematical Engineering</h3>
-                    <h2>27/29</h2>
-                    <div class="progress">
-                        <svg><circle cx="38" cy="38" r="36"></circle></svg>
-                        <div class="number"><p>93%</p></div>
-                    </div>
-                    <small class="text-muted">Last 24 Hours</small>
-                </div>
-                <div class="cs">
-                    <span class="material-icons-sharp">computer</span>
-                    <h3>Computer Architecture</h3>
-                    <h2>27/30</h2>
-                    <div class="progress">
-                        <svg><circle cx="38" cy="38" r="36"></circle></svg>
-                        <div class="number"><p>81%</p></div>
-                    </div>
-                    <small class="text-muted">Last 24 Hours</small>
-                </div>
-                <div class="cg">
-                    <span class="material-icons-sharp">dns</span>
-                    <h3>Database Management</h3>
-                    <h2>24/25</h2>
-                    <div class="progress">
-                        <svg><circle cx="38" cy="38" r="36"></circle></svg>
-                        <div class="number"><p>96%</p></div>
-                    </div>
-                    <small class="text-muted">Last 24 Hours</small>
-                </div>
+            <div class="subjects" id="subjectContainer">
+                <!-- Subject data will be dynamically added here -->
             </div>
-
+        
             <div class="timetable" id="timetable">
                 <div>
                     <span id="prevDay">&lt;</span>
@@ -135,11 +96,10 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody id="timetableBody"></tbody>
                 </table>
             </div>
         </main>
-
         <div class="right">
             <button class="chatbot-toggler">
                 <span class="material-symbols-outlined">mode_comment</span>

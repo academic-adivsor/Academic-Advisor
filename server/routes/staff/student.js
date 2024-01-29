@@ -8,6 +8,7 @@ const {
   studentUpdateProfile,
   adminUpdateStudent,
   writeExam,
+  deleteStudent,
 } = require("../../controller/students/studentsCtrl");
 
 const isAdmin = require("../../middlewares/isAdmin");
@@ -31,13 +32,11 @@ studentRouter.get(
 studentRouter.get(
   "/admin",
   isAuthenticated(Admin),
-  roleRestriction("admin"),
   getAllStudentsByAdmin
 );
 studentRouter.get(
   "/:studentID/admin",
-  isAuthenticated(Student),
-  roleRestriction("admin"),
+  isAuthenticated(Admin),
   getStudentByAdmin
 );
 
@@ -59,5 +58,11 @@ studentRouter.put(
   isAuthenticated(Admin),
   roleRestriction("admin"),
   adminUpdateStudent
+);
+studentRouter.delete(
+  "/:studentID/delete/admin",
+  isAuthenticated(Admin),
+  roleRestriction("admin"),
+  deleteStudent
 );
 module.exports = studentRouter;

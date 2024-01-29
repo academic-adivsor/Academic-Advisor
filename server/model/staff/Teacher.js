@@ -61,6 +61,7 @@ const teacherSchema = new Schema({
 
     program: {
         type: String,
+        required: true,
     },
     //A teacher can teach in more than one class level
     classLevel: {

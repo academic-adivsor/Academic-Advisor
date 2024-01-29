@@ -11,7 +11,7 @@ const { hashPassword, isPassMatched } = require("../../utlis/helpers");
 //@acess  Private Admin only
 
 exports.adminRegisterStudent = AysncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password , program } = req.body;
   //find the admin
   const adminFound = await Admin.findById(req.userAuth._id);
   if (!adminFound) {
@@ -30,6 +30,7 @@ exports.adminRegisterStudent = AysncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
+    program
   });
   //push teacher into admin
   adminFound.students.push(studentRegistered?._id);
@@ -143,13 +144,8 @@ exports.getStudentByAdmin = AysncHandler(async (req, res) => {
 //@access   Private Student only
 
 exports.studentUpdateProfile = AysncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { password } = req.body;
   //if email is taken
-  const emailExist = await Student.findOne({ email });
-  if (emailExist) {
-    throw new Error("This email is taken/exist");
-  }
-
   //hash password
   //check if user is updating password
 
@@ -158,7 +154,6 @@ exports.studentUpdateProfile = AysncHandler(async (req, res) => {
     const student = await Student.findByIdAndUpdate(
       req.userAuth._id,
       {
-        email,
         password: await hashPassword(password),
       },
       {
@@ -403,4 +398,21 @@ exports.writeExam = AysncHandler(async (req, res) => {
     status: "success",
     data: "You have submitted your exam. Check later for the results",
   });
+});
+
+
+
+exports.deleteStudent = AysncHandler(async (req, res) => {
+  try {
+    // Find and delete the student
+    await Student.findByIdAndDelete(req.params.studentID);
+
+    res.status(201).json({
+      status: 'success',
+      message: 'Student deleted successfully',
+    });
+  } catch (error) {
+    console.error('Error deleting student:', error);
+    res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+  }
 });

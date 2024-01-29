@@ -98,3 +98,12 @@ exports.deleteProgram = AysncHandler(async (req, res) => {
     message: "Program deleted successfully",
   });
 });
+exports.getProgramByname = AysncHandler(async (req, res) => {
+  const subject = await Program.find({ name: req.params.id });
+
+  res.status(201).json({
+    status: "success",
+    message: "Subject fetched successfully",
+    data: subject,
+  });
+});

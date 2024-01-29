@@ -128,3 +128,115 @@ const handleChat = () => {
 sendChatBtn.addEventListener("click" , handleChat);
 chatbotCloseBtn.addEventListener("click" , () => document.body.classList.remove("show-chatbot"));
 chatbotToggler.addEventListener("click" , () => document.body.classList.toggle("show-chatbot"));
+
+
+const token = localStorage.getItem('authToken'); // Replace 'your_token_key' with the actual key used to store the token
+
+// Check if token exists in Local Storage
+function isTokenExists() {
+    const authToken = localStorage.getItem('authToken');
+    return authToken !== null && authToken !== undefined;
+}
+
+// Redirect to the login page
+function redirectToLogin() {
+    window.location.href = 'http://localhost:8080/index.html'; // Change this URL to your login page
+}
+document.addEventListener('DOMContentLoaded', function () {
+    // Fetch data from the endpoint
+    var programName;
+    var programID;
+
+    fetch(`http://localhost:2020/api/v1/teachers/profile`, {
+        headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the "Authorization" header
+            'Content-Type': 'application/json'
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Assuming there is only one student in the data
+            const student = data.data;
+            programName = student.program;
+            // Update the profile section
+            document.getElementById('studentName').textContent = student.name;
+            document.getElementById('studentID').textContent = student.teacherId; // Adjust the actual property name
+
+            // Update the about section
+            document.getElementById('course').textContent = student.program;
+            document.getElementById('dob').textContent = student.dateEmployed;
+            document.getElementById('contact').textContent = student.contact || '123456789';
+            document.getElementById('email').textContent = student.email;
+            document.getElementById('address').textContent = student.address || 'Modern acedamy';
+
+            // Fetch the second set of data after the first one
+            return fetch(`http://localhost:2020/api/v1/programs/name/${programName}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`, // Include the token in the "Authorization" header
+                    'Content-Type': 'application/json'
+                },
+            });
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Assuming there is only one student in the data
+            const student = data.data;
+            programID = student[0]._id;
+            // Fetch the third set of data after the second one
+            return fetch(`http://localhost:2020/api/v1/subjects/getBysubjectId/${programID}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`, // Include the token in the "Authorization" header
+                    'Content-Type': 'application/json'
+                },
+            });
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success' && data.data) {
+                // Iterate through subjects and create elements
+                data.data.forEach(subject => {
+                    const randomProgress = Math.floor(Math.random() * 101);
+                    const subjectElement = createSubjectElement(subject ,randomProgress);
+                    subjectContainer.appendChild(subjectElement);
+                });
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+});
+
+
+function decodeJWT(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
+
+
+function createSubjectElement(subject , randomProgress) {
+    const randomColor = getRandomColor();
+    const subjectElement = document.createElement('div');
+    subjectElement.className = 'subject';
+    subjectElement.innerHTML = `
+        <h3>${subject.name}</h3>
+        <h2>${randomProgress}%</h2>
+        <div class="progress" style="color: ${randomColor};">
+            <svg><circle cx="38" cy="38" r="36" stroke="${randomColor}"></circle></svg>
+            <div class="number"><p>${randomProgress}%</p></div>
+        </div>
+        <small class="text-muted">Last 24 Hours</small>
+    `;
+    return subjectElement;
+}
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}

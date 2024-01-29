@@ -103,3 +103,14 @@ exports.deleteSubject = AysncHandler(async (req, res) => {
     message: "subject deleted successfully",
   });
 });
+
+exports.getBysubjectId = AysncHandler(async (req, res) => {
+  const subject = await Subject.find({ academicTerm: req.params.id });
+
+  res.status(201).json({
+    status: "success",
+    message: "Subject fetched successfully",
+    data: subject,
+  });
+});
+

@@ -7,6 +7,9 @@ const {
   getTeacherProfile,
   teacherUpdateProfile,
   adminUpdateTeacher,
+  deleteTeacher,
+  teacherUpdatePassword,
+
 } = require("../../controller/staff/teachersCtrl");
 const isAdmin = require("../../middlewares/isAdmin");
 const isLogin = require("../../middlewares/isLogin");
@@ -46,4 +49,19 @@ teachersRouter.put(
   isAdmin,
   adminUpdateTeacher
 );
+teachersRouter.delete(
+  "/:teacherID/delete/admin",
+  isLogin,
+  isAdmin,
+  deleteTeacher
+);
+
+
+teachersRouter.put(
+  "/update",
+  isTeacherLogin,
+  isTeacher,
+  teacherUpdatePassword
+);
+
 module.exports = teachersRouter;
