@@ -30,7 +30,7 @@ $('a[href*="#"]').on('click' , function(e){
 
 
 const token = localStorage.getItem('authToken'); // Replace 'your_token_key' with the actual key used to store the token
-
+var programID ;
 // Check if token exists in Local Storage
 function isTokenExists() {
     const authToken = localStorage.getItem('authToken');
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Assuming the received data is stored in the 'user' variable
         const user = data.data;
+        programID = user.program;
 
         // Update user information
         document.getElementById('profileName').textContent = user.name;
@@ -65,9 +66,24 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('email').textContent = user.email;
 
 
-          userContainer.querySelector('.post').textContent = user.role;
+        //   userContainer.querySelector('.post').textContent = user.role;
+
+          fetch(`http://localhost:2020/api/v1/programs/${programID}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
+          })
+            .then(response => response.json())
+            .then(data => {
+              // Assuming data is an array of education details
+              fillEducationSection(data);
+            })
+            .catch(error => console.error('Error fetching education data:', error));
+    
     })
     .catch(error => console.error('Error fetching user data:', error));
+    
 });
 
 
@@ -81,3 +97,105 @@ function decodeJWT(token) {
 
     return JSON.parse(jsonPayload);
 }
+
+
+
+
+
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+
+  function fillEducationSection(educationData) {
+
+    fetch(`http://localhost:2020/api/v1/subjects/getBysubjectId/${programID}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Assuming data is an array of education details
+
+      const boxContainer = document.querySelector('.box-container');
+  
+      data.data.forEach((yearData) => {
+        const box = document.createElement('div');
+        box.classList.add('box');
+    
+        const subjectsList = document.createElement('ul');
+        const subjectItem = document.createElement('li');
+          subjectItem.classList.add('achievement');
+    
+          subjectItem.innerHTML = `
+            <h2>${yearData.name}</h2>
+            <p>${generateRandomProjects()} Projects <br> Grade : ${generateRandomGrade()}</p>
+          `;
+    
+          subjectsList.appendChild(subjectItem);
+
+    
+        box.innerHTML = `
+          <i class="fas fa-graduation-cap"></i>
+          <span>${educationData.data.duration}</span>
+          <h3>${educationData.data.name}</h3>
+        `;
+        box.appendChild(subjectsList);
+    
+        boxContainer.appendChild(box);
+      });
+  
+    })
+    .catch(error => console.error('Error fetching education data:', error));
+  
+  }
+  
+  // Function to generate a random number between min and max
+
+  // Function to dynamically fill the education section
+//   function fillEducationSection(educationData) {
+
+//     const boxContainer = document.querySelector('.box-container');
+  
+//     educationData.forEach((yearData) => {
+//       const box = document.createElement('div');
+//       box.classList.add('box');
+  
+//       const subjectsList = document.createElement('ul');
+  
+//       yearData.subjects.forEach((subject) => {
+//         const subjectItem = document.createElement('li');
+//         subjectItem.classList.add('achievement');
+  
+//         subjectItem.innerHTML = `
+//           <h2>${subject.name}</h2>
+//           <p>${subject.projects} Projects <br> Grade : ${subject.grade}</p>
+//         `;
+  
+//         subjectsList.appendChild(subjectItem);
+//       });
+  
+//       box.innerHTML = `
+//         <i class="fas fa-graduation-cap"></i>
+//         <span>${yearData.year}</span>
+//         <h3>${yearData.title}</h3>
+//       `;
+//       box.appendChild(subjectsList);
+  
+//       boxContainer.appendChild(box);
+//     });
+//   }
+  
+// Function to generate random grade
+function generateRandomGrade() {
+    const grades = ['A+', 'A', 'B+', 'B', 'C+', 'C'];
+    const randomIndex = getRandomNumber(0, grades.length - 1);
+    return grades[randomIndex];
+  }
+  
+  // Function to generate random projects
+  function generateRandomProjects() {
+    return getRandomNumber(1, 5); // Adjust the range as needed
+  }  
