@@ -37,6 +37,7 @@ app.use(express.static(__dirname + '/public')); // Assuming your HTML file is in
 // Routes
 
 //Routes
+//assigns links to each constant
 app.use("/api/v1/admins", cors(corsOptions), adminRouter);
 app.use("/api/v1/academic-years", academicYearRouter);
 app.use("/api/v1/academic-terms", academicTermRouter);

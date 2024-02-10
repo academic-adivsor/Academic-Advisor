@@ -53,6 +53,7 @@ app.use(cors()); // Add this line to enable CORS for all routes
 app.use(express["static"](__dirname + '/public')); // Assuming your HTML file is in the 'public' folder
 // Routes
 //Routes
+//assigns links to each constant
 
 app.use("/api/v1/admins", cors(corsOptions), adminRouter);
 app.use("/api/v1/academic-years", academicYearRouter);
