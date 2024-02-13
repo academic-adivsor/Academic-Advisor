@@ -17,7 +17,9 @@
     "license": "ISC",
     "dependencies": {
         "@google-cloud/dialogflow": "^6.2.0",
+        "bcrypt": "^5.1.1",
         "bcryptjs": "^2.4.3",
+        "concurrently": "^8.2.2",
         "cors": "^2.8.5",
         "dialogflow": "^4.0.3",
         "dotenv": "^16.3.1",

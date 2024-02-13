@@ -111,6 +111,8 @@ npm start
 
 http server not recoginesed : npm install -g http-server
 other errors in client don't need to be solved some will be left after running this command : run npm install
+concurrently install : npm install concurrently
+
 ## Contributing
 
 Hussein: builded the logic of the backend ,coded it and worked on the scripts of the frontend and created the chatbot and connected the front with the back with the chatbot
