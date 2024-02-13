@@ -72,6 +72,8 @@ You will need to have node js installed and run npm install and you may need to 
 
 node.js
 jwt
+bcrypt
+mongoDB
 html
 css
 javascript
