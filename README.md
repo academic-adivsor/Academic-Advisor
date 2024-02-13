@@ -115,7 +115,7 @@ concurrently install : npm install concurrently
 
 ## Contributing
 
-Hussein: builded the logic of the backend ,coded it and worked on the scripts of the frontend and created the chatbot and connected the front with the back with the chatbot
+Team Leader Hussein: builded the logic of the backend ,coded it and worked on the scripts of the frontend and created the chatbot and connected the front with the back with the chatbot
 
 Ahmed: was supporting the logic and the code of the backend
 
