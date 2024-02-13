@@ -1,3 +1,19 @@
+# Node.js
 node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+parker-pslk-7df273a4b799.json
+
+# Environment variables
 .env
-*.json
+
+# Build files
+dist/
+
+# Windows
+Thumbs.db
