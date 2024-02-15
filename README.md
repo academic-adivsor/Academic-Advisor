@@ -117,11 +117,11 @@ concurrently install : npm install concurrently
 
 ## Contributing
 
-Team Leader Hussein: builded the logic of the backend ,coded it and worked on the scripts of the frontend and created the chatbot and connected the front with the back with the chatbot
+Team Leader Hussein([HusseinAhmed9](https://github.com/HusseinAhmed9)): builded the logic of the backend ,coded it and worked on the scripts of the frontend and created the chatbot and connected the front with the back with the chatbot
 
-Ahmed: was supporting the logic and the code of the backend
+Ahmed Nasser([budderrar](https://github.com/budderrar)): was supporting the logic and the code of the backend
 
-Mohamed: Designed the frontend and coded it
+Mohamed([MohamedAhmedGalhoum]https://github.com/MohamedAhmedGalhoum): Designed the frontend and coded it
 
 ## License
 
