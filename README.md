@@ -126,3 +126,7 @@ Mohamed([MohamedAhmedGalhoum]https://github.com/MohamedAhmedGalhoum): Designed t
 ## License
 
 MIT License
+
+### Project Status:
+
+Under active development. Feedback and contributions are encouraged. like that
