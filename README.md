@@ -72,6 +72,8 @@ You will need to have node js installed and run npm install and you may need to 
 
 node.js
 jwt
+bcrypt
+mongoDB
 html
 css
 javascript
@@ -115,12 +117,16 @@ concurrently install : npm install concurrently
 
 ## Contributing
 
-Hussein: builded the logic of the backend ,coded it and worked on the scripts of the frontend and created the chatbot and connected the front with the back with the chatbot
+Team Leader Hussein([HusseinAhmed9](https://github.com/HusseinAhmed9)): builded the logic of the backend ,coded it and worked on the scripts of the frontend and created the chatbot and connected the front with the back with the chatbot
 
-Ahmed: was supporting the logic and the code of the backend
+Ahmed Nasser([budderrar](https://github.com/budderrar)): was supporting the logic and the code of the backend
 
-Mohamed: Designed the frontend and coded it
+Mohamed([MohamedAhmedGalhoum](https://github.com/MohamedAhmedGalhoum)): Designed the frontend and coded it
 
 ## License
 
 MIT License
+
+### Project Status:
+
+Under active development. Feedback and contributions are encouraged. like that
