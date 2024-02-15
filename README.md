@@ -121,7 +121,7 @@ Team Leader Hussein([HusseinAhmed9](https://github.com/HusseinAhmed9)): builded 
 
 Ahmed Nasser([budderrar](https://github.com/budderrar)): was supporting the logic and the code of the backend
 
-Mohamed([MohamedAhmedGalhoum]https://github.com/MohamedAhmedGalhoum): Designed the frontend and coded it
+Mohamed([MohamedAhmedGalhoum](https://github.com/MohamedAhmedGalhoum)): Designed the frontend and coded it
 
 ## License
 
